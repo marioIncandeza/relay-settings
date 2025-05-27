@@ -1,7 +1,5 @@
 import os
 import shutil
-import tkinter as tk
-from tkinter import filedialog
 import xlwings as xw
 
 
@@ -42,27 +40,25 @@ def update_template_351S(word_bits):
             file_handle.close()
 
 
-def gen_settings_351S():
-    """This function updates the rdb text based template which can be imported in Quickset"""
+def gen_settings_351S(xl_path, template_path, output_path):
+    """This function updates the rdb text based template which can be imported in Quickset
+    
+    Args:
+        xl_path (str): Path to the Excel workbook containing settings
+        template_path (str): Path to the RDB template directory
+        output_path (str): Path to the output directory where settings will be generated
+    """
 
     try:
-        # Open the Excel file and select the sheet
-        root = tk.Tk()
-        root.withdraw()
-
         app = xw.App(visible=False)
-        xl_path = filedialog.askopenfilename(title="Select settings workbook...")
         wb = app.books.open(xl_path)
         sheet = wb.sheets['Feeder_351S']
-
-        template_path = filedialog.askdirectory(title="Select rdb template...")
-        output_path = filedialog.askdirectory(title="Select output directory...")
 
         # Get RDB Variables and create output directories
         relay_class = sheet.tables['class_351S'].range.value
         output_paths = []
         for relay in relay_class[1:]:
-            new_dir = output_path + '\\' + str(relay[0])
+            new_dir = os.path.join(output_path, str(relay[0]))
             shutil.copytree(template_path, new_dir)
             output_paths.append(new_dir)
 
@@ -100,4 +96,9 @@ def gen_settings_351S():
         app.quit()
 
 
-gen_settings_351S()
+if __name__ == '__main__':
+    # Example usage
+    xl_path = "path/to/settings.xlsx"
+    template_path = "path/to/template"
+    output_path = "path/to/output"
+    gen_settings_351S(xl_path, template_path, output_path)
