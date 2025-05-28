@@ -1,45 +1,100 @@
 import tkinter as tk
 from tkinter import ttk, filedialog, messagebox
-from rdb import gen_settings_351S
+from rdb import gen_settings_351S, gen_settings_HV351S
 
 
 class SettingsGUI:
     def __init__(self, root):
         self.root = root
         self.root.title("SEL Settings Generator")
-        self.root.geometry("600x300")
+        self.root.geometry("600x400")
         
-        # Variables to store paths
+        # Variables to store paths and selection
         self.xl_path = tk.StringVar()
         self.template_path = tk.StringVar()
         self.output_path = tk.StringVar()
+        self.selected_type = None
         
+        self.show_selection_screen()
+        
+    def show_selection_screen(self):
+        # Clear any existing widgets
+        for widget in self.root.winfo_children():
+            widget.destroy()
+            
+        # Create selection frame
+        selection_frame = ttk.Frame(self.root, padding="20")
+        selection_frame.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
+        self.root.grid_rowconfigure(0, weight=1)
+        self.root.grid_columnconfigure(0, weight=1)
+        
+        # Title
+        title_label = ttk.Label(selection_frame, text="Select Relay Type", font=('Helvetica', 14, 'bold'))
+        title_label.grid(row=0, column=0, columnspan=2, pady=(0, 20))
+        
+        # Buttons
+        style = ttk.Style()
+        style.configure('Large.TButton', padding=10)
+        
+        feeder_btn = ttk.Button(selection_frame, text="Feeder 351S", style='Large.TButton',
+                               command=lambda: self.on_type_selected('feeder'))
+        feeder_btn.grid(row=1, column=0, padx=10, pady=10, sticky=(tk.W, tk.E))
+        
+        hv_btn = ttk.Button(selection_frame, text="HV 351S", style='Large.TButton',
+                           command=lambda: self.on_type_selected('hv'))
+        hv_btn.grid(row=1, column=1, padx=10, pady=10, sticky=(tk.W, tk.E))
+        
+        # Configure grid weights
+        selection_frame.grid_columnconfigure(0, weight=1)
+        selection_frame.grid_columnconfigure(1, weight=1)
+        
+    def on_type_selected(self, relay_type):
+        self.selected_type = relay_type
+        self.show_main_interface()
+        
+    def show_main_interface(self):
+        # Clear any existing widgets
+        for widget in self.root.winfo_children():
+            widget.destroy()
+            
         # Create main frame
-        main_frame = ttk.Frame(root, padding="10")
+        main_frame = ttk.Frame(self.root, padding="10")
         main_frame.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
         
+        # Title showing selected type
+        title_text = "Feeder 351S Settings" if self.selected_type == 'feeder' else "HV 351S Settings"
+        title_label = ttk.Label(main_frame, text=title_text, font=('Helvetica', 12, 'bold'))
+        title_label.grid(row=0, column=0, columnspan=3, pady=(0, 15))
+        
+        # Back button
+        back_btn = ttk.Button(main_frame, text="← Back", command=self.show_selection_screen)
+        back_btn.grid(row=0, column=2, sticky=tk.E)
+        
         # Excel file selection
-        ttk.Label(main_frame, text="Settings Workbook:").grid(row=0, column=0, sticky=tk.W, pady=5)
-        ttk.Entry(main_frame, textvariable=self.xl_path, width=50).grid(row=0, column=1, padx=5)
-        ttk.Button(main_frame, text="Browse...", command=self.browse_excel).grid(row=0, column=2)
+        ttk.Label(main_frame, text="Settings Workbook:").grid(row=1, column=0, sticky=tk.W, pady=5)
+        ttk.Entry(main_frame, textvariable=self.xl_path, width=50).grid(row=1, column=1, padx=5)
+        ttk.Button(main_frame, text="Browse...", command=self.browse_excel).grid(row=1, column=2)
         
         # Template directory selection
-        ttk.Label(main_frame, text="RDB Template Directory:").grid(row=1, column=0, sticky=tk.W, pady=5)
-        ttk.Entry(main_frame, textvariable=self.template_path, width=50).grid(row=1, column=1, padx=5)
-        ttk.Button(main_frame, text="Browse...", command=self.browse_template).grid(row=1, column=2)
+        ttk.Label(main_frame, text="RDB Template Directory:").grid(row=2, column=0, sticky=tk.W, pady=5)
+        ttk.Entry(main_frame, textvariable=self.template_path, width=50).grid(row=2, column=1, padx=5)
+        ttk.Button(main_frame, text="Browse...", command=self.browse_template).grid(row=2, column=2)
         
         # Output directory selection
-        ttk.Label(main_frame, text="Output Directory:").grid(row=2, column=0, sticky=tk.W, pady=5)
-        ttk.Entry(main_frame, textvariable=self.output_path, width=50).grid(row=2, column=1, padx=5)
-        ttk.Button(main_frame, text="Browse...", command=self.browse_output).grid(row=2, column=2)
+        ttk.Label(main_frame, text="Output Directory:").grid(row=3, column=0, sticky=tk.W, pady=5)
+        ttk.Entry(main_frame, textvariable=self.output_path, width=50).grid(row=3, column=1, padx=5)
+        ttk.Button(main_frame, text="Browse...", command=self.browse_output).grid(row=3, column=2)
         
         # Generate button
-        ttk.Button(main_frame, text="Generate Settings", command=self.generate_settings).grid(row=3, column=0, columnspan=3, pady=20)
+        ttk.Button(main_frame, text="Generate Settings", command=self.generate_settings).grid(row=4, column=0, columnspan=3, pady=20)
         
         # Status label
         self.status_var = tk.StringVar()
         self.status_var.set("Ready")
-        ttk.Label(main_frame, textvariable=self.status_var).grid(row=4, column=0, columnspan=3)
+        ttk.Label(main_frame, textvariable=self.status_var).grid(row=5, column=0, columnspan=3)
+        
+        # Configure grid weights
+        main_frame.grid_columnconfigure(1, weight=1)
 
     def browse_excel(self):
         filename = filedialog.askopenfilename(
@@ -69,7 +124,10 @@ class SettingsGUI:
             self.status_var.set("Generating settings...")
             self.root.update()
             
-            gen_settings_351S(
+            # Choose the appropriate generation function
+            gen_function = gen_settings_351S if self.selected_type == 'feeder' else gen_settings_HV351S
+            
+            gen_function(
                 xl_path=self.xl_path.get(),
                 template_path=self.template_path.get(),
                 output_path=self.output_path.get()
