@@ -89,22 +89,25 @@ def gen_settings_351S(xl_path, template_path, output_path):
 
         # Get relay class info and create output directories
         relay_class = sheet.tables['class_351S'].range.value
+        relay_class = [item for item in relay_class if item[0] is not None]  # remove blank lines
         output_paths = []
         for relay in relay_class[1:]:
-            new_dir = os.path.join(output_path, str(relay[0]))
-            shutil.copytree(template_path, new_dir)
-            output_paths.append(new_dir)
+            if relay[0] is not None:
+                new_dir = os.path.join(output_path, str(relay[0]))
+                shutil.copytree(template_path, new_dir)
+                output_paths.append(new_dir)
 
         settings = sheet.tables['settings_351S'].range.value
         get_wordbits(relay_class, settings)
 
         for i, relay in enumerate(relay_class[1:]):
-            word_bits = get_wordbits(relay, settings)
-            # Generate RDB .txt file
-            os.chdir(output_paths[i])
-            update_template_351S(word_bits)
+            if relay[0] is not None:
+                word_bits = get_wordbits(relay, settings)
+                # Generate RDB .txt file
+                os.chdir(output_paths[i])
+                update_template_351S(word_bits)
 
-            print(relay[0] + ' settings complete...')
+                print(relay[0] + ' settings complete...')
 
     # Close workbook and quit app
     finally:
@@ -113,7 +116,7 @@ def gen_settings_351S(xl_path, template_path, output_path):
 
 
 def gen_settings_HV351S(xl_path, template_path, output_path):
-    """Updates the rdb text based template which can be imported in Quickset
+    """Updates the rdb text based template which can be imported in QuickSet
 
     Args:
         xl_path (str): Path to the Excel workbook containing settings
@@ -128,22 +131,25 @@ def gen_settings_HV351S(xl_path, template_path, output_path):
 
         # Get relay class info and create output directories
         relay_class = sheet.tables['class_HV351S'].range.value
+        relay_class = [item for item in relay_class if item[0] is not None]  # remove blank lines
         output_paths = []
         for relay in relay_class[1:]:
-            new_dir = os.path.join(output_path, str(relay[0]))
-            shutil.copytree(template_path, new_dir)
-            output_paths.append(new_dir)
+            if relay[0] is not None:
+                new_dir = os.path.join(output_path, str(relay[0]))
+                shutil.copytree(template_path, new_dir)
+                output_paths.append(new_dir)
 
         settings = sheet.tables['settings_HV351S'].range.value
         get_wordbits(relay_class, settings)
 
         for i, relay in enumerate(relay_class[1:]):
-            word_bits = get_wordbits(relay, settings)
-            # Generate RDB .txt file
-            os.chdir(output_paths[i])
-            update_template_351S(word_bits)
+            if relay[0] is not None:
+                word_bits = get_wordbits(relay, settings)
+                # Generate RDB .txt file
+                os.chdir(output_paths[i])
+                update_template_351S(word_bits)
 
-            print(relay[0] + ' settings complete...')
+                print(relay[0] + ' settings complete...')
 
     # Close workbook and quit app
     finally:
@@ -152,7 +158,7 @@ def gen_settings_HV351S(xl_path, template_path, output_path):
 
 if __name__ == '__main__':
     # Example usage
-    xl_path = "path/to/settings.xlsx"
-    template_path = "path/to/template"
-    output_path = "path/to/output"
-    gen_settings_351S(xl_path, template_path, output_path)
+    xl_path = r"C:\Users\laerps\OneDrive - Westwood Active Directory\Desktop\351S\Settings.xlsx"
+    template_path = r"C:\Users\laerps\OneDrive - Westwood Active Directory\Desktop\351S\test template"
+    output_path = r"C:\Users\laerps\OneDrive - Westwood Active Directory\Desktop\351S"
+    gen_settings_HV351S(xl_path, template_path, output_path)
