@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import ttk, filedialog, messagebox
-from rdb import gen_settings_351S, gen_settings_HV351S
+from rdb import gen_settings, gen_settings_351S, gen_settings_HV351S
 
 
 class SettingsGUI:
@@ -14,6 +14,12 @@ class SettingsGUI:
         self.template_path = tk.StringVar()
         self.output_path = tk.StringVar()
         self.selected_type = None
+        self.workbook_params = None
+        self.workbook_data = {
+            'feeder': {'sheet_name': 'Feeder_351S', 'class_table': 'class_351S', 'settings_table': 'settings_351S'},
+            'hv': {'sheet_name': 'HV_351S', 'class_table': 'class_HV351S', 'settings_table': 'settings_HV351S'},
+            'xfmr_487E': {'sheet_name': 'XFMR_487E', 'class_table': 'class_487E', 'settings_table': 'settings_487E'}
+        }
         
         self.show_selection_screen()
         
@@ -43,6 +49,10 @@ class SettingsGUI:
         hv_btn = ttk.Button(selection_frame, text="HV 351S", style='Large.TButton',
                            command=lambda: self.on_type_selected('hv'))
         hv_btn.grid(row=1, column=1, padx=10, pady=10, sticky=(tk.W, tk.E))
+
+        xfmr_btn = ttk.Button(selection_frame, text="XFMR 487E", style='Large.TButton',
+                              command=lambda: self.on_type_selected('xfmr_487E'))
+        xfmr_btn.grid(row=2, column=0, padx=10, pady=10, sticky=(tk.W, tk.E))
         
         # Configure grid weights
         selection_frame.grid_columnconfigure(0, weight=1)
@@ -50,6 +60,7 @@ class SettingsGUI:
         
     def on_type_selected(self, relay_type):
         self.selected_type = relay_type
+        self.workbook_params = self.workbook_data[relay_type]
         self.show_main_interface()
         
     def show_main_interface(self):
@@ -62,7 +73,12 @@ class SettingsGUI:
         main_frame.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
         
         # Title showing selected type
-        title_text = "Feeder 351S Settings" if self.selected_type == 'feeder' else "HV 351S Settings"
+        title_map = {
+            'feeder': "Feeder 351S Settings",
+            'hv': "HV 351S Settings",
+            'xfmr_487E': "Transformer 487E Settings"
+        }
+        title_text = title_map.get(self.selected_type, "Relay Settings")
         title_label = ttk.Label(main_frame, text=title_text, font=('Helvetica', 12, 'bold'))
         title_label.grid(row=0, column=0, columnspan=3, pady=(0, 15))
         
@@ -125,12 +141,13 @@ class SettingsGUI:
             self.root.update()
             
             # Choose the appropriate generation function
-            gen_function = gen_settings_351S if self.selected_type == 'feeder' else gen_settings_HV351S
+            gen_function = gen_settings  # _351S if self.selected_type == 'feeder' else gen_settings_HV351S
             
             gen_function(
                 xl_path=self.xl_path.get(),
                 template_path=self.template_path.get(),
-                output_path=self.output_path.get()
+                output_path=self.output_path.get(),
+                workbook_params=self.workbook_params
             )
             
             self.status_var.set("Settings generated successfully!")
@@ -140,10 +157,12 @@ class SettingsGUI:
             self.status_var.set("Error occurred during generation")
             messagebox.showerror("Error", f"An error occurred:\n{str(e)}")
 
+
 def main():
     root = tk.Tk()
     app = SettingsGUI(root)
     root.mainloop()
+
 
 if __name__ == "__main__":
     main()
