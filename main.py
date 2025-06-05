@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import ttk, filedialog, messagebox
-from rdb import gen_settings, gen_settings_351S, gen_settings_HV351S
+from rdb import gen_settings
 
 
 class SettingsGUI:
@@ -18,7 +18,8 @@ class SettingsGUI:
         self.workbook_data = {
             'feeder': {'sheet_name': 'Feeder_351S', 'class_table': 'class_351S', 'settings_table': 'settings_351S'},
             'hv': {'sheet_name': 'HV_351S', 'class_table': 'class_HV351S', 'settings_table': 'settings_HV351S'},
-            'xfmr_487E': {'sheet_name': 'XFMR_487E', 'class_table': 'class_487E', 'settings_table': 'settings_487E'}
+            'xfmr_487E': {'sheet_name': 'XFMR_487E', 'class_table': 'class_487E', 'settings_table': 'settings_487E'},
+            'cap_487V': {'sheet_name': 'CAP_487V', 'class_table': 'class_487V', 'settings_table': 'settings_487V'}
         }
         
         self.show_selection_screen()
@@ -53,10 +54,17 @@ class SettingsGUI:
         xfmr_btn = ttk.Button(selection_frame, text="XFMR 487E", style='Large.TButton',
                               command=lambda: self.on_type_selected('xfmr_487E'))
         xfmr_btn.grid(row=2, column=0, padx=10, pady=10, sticky=(tk.W, tk.E))
+
+        cap_btn = ttk.Button(selection_frame, text="CAP 487V", style='Large.TButton',
+                              command=lambda: self.on_type_selected('cap_487V'))
+        cap_btn.grid(row=2, column=1, padx=10, pady=10, sticky=(tk.W, tk.E))
         
         # Configure grid weights
         selection_frame.grid_columnconfigure(0, weight=1)
         selection_frame.grid_columnconfigure(1, weight=1)
+
+        # Reset template path
+        self.template_path = tk.StringVar()
         
     def on_type_selected(self, relay_type):
         self.selected_type = relay_type
@@ -76,7 +84,8 @@ class SettingsGUI:
         title_map = {
             'feeder': "Feeder 351S Settings",
             'hv': "HV 351S Settings",
-            'xfmr_487E': "Transformer 487E Settings"
+            'xfmr_487E': "Transformer 487E Settings",
+            'cap_487V': "Capacitor Bank 487V Settings"
         }
         title_text = title_map.get(self.selected_type, "Relay Settings")
         title_label = ttk.Label(main_frame, text=title_text, font=('Helvetica', 12, 'bold'))
