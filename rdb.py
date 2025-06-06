@@ -55,7 +55,7 @@ def update_template_400(word_bits):
             file_handle.close()
 
 
-def get_wordbits(relay, settings, pmu=True):
+def get_wordbits(relay, settings, pmu=True, mtr=False):
     """Extracts word bits from settings table
 
     Args:
@@ -65,10 +65,15 @@ def get_wordbits(relay, settings, pmu=True):
         """
 
     float_index = settings[0].index('Float')
-    word_bits = [
-        {'element': 'RID', 'value': relay[0], 'qs_group': None},
-        {'element': 'IPADDR', 'value': relay[3], 'qs_group': None}
-    ]
+    word_bits = []
+    if mtr:
+        word_bits.append({'element': 'MID', 'value': relay[0], 'qs_group': None})
+    else:
+        word_bits.append({'element': 'RID', 'value': relay[0], 'qs_group': None})
+    try:
+        word_bits.append({'element': 'IPADDR', 'value': relay[3], 'qs_group': None})
+    except IndexError:
+        pass
     if pmu:
         pmu_id = {'element': 'PMSTN', 'value': relay[0], 'qs_group': None}
         word_bits.append(pmu_id)
@@ -107,6 +112,7 @@ def gen_settings(xl_path, template_path, output_path, workbook_params):
     """
 
     series_400 = ['XFMR_487E', 'CAP_487V']
+    meters = ['Meter_735']
     try:
         app = xw.App(visible=False)
         wb = app.books.open(xl_path)
@@ -126,7 +132,10 @@ def gen_settings(xl_path, template_path, output_path, workbook_params):
 
         for i, relay in enumerate(relay_class[1:]):
             if relay[0] is not None:
-                word_bits = get_wordbits(relay, settings)
+                if workbook_params['sheet_name'] in meters:
+                    word_bits = get_wordbits(relay, settings, mtr=True)
+                else:
+                    word_bits = get_wordbits(relay, settings)
                 # Generate RDB .txt file
                 os.chdir(output_paths[i])
                 if workbook_params['sheet_name'] in series_400:
@@ -166,7 +175,7 @@ def update_template(word_bits):
                     if line.startswith(element['element'] + ',') and (settings_group == element['qs_group'] or
                                                                       element['qs_group'] is None):
                         index = content.index(line)
-                        content[index] = element['element'] + ',"' + str(element['value']) + '"' + '\n'
+                        content[index] = element['element'] + ',"' + str(element['value']) + '"' + '\x1c\n'
                         found.append(index)
                         break
 
@@ -175,10 +184,10 @@ def update_template(word_bits):
                     index = content.index(line)
                     if index not in found and (len(line.split(',')) > 1):
                         temp = content[index].split(',')[0]
-                        content[index] = temp + ',"NA"\n'
+                        content[index] = temp + ',"NA"\x1c\n'
 
             # write new content to file
-            file_handle = open(file, 'w')
+            file_handle = open(file, 'w', encoding="ascii")
             for line in content:
                 file_handle.write(line)
             file_handle.close()

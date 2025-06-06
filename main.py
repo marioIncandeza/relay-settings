@@ -19,7 +19,9 @@ class SettingsGUI:
             'feeder': {'sheet_name': 'Feeder_351S', 'class_table': 'class_351S', 'settings_table': 'settings_351S'},
             'hv': {'sheet_name': 'HV_351S', 'class_table': 'class_HV351S', 'settings_table': 'settings_HV351S'},
             'xfmr_487E': {'sheet_name': 'XFMR_487E', 'class_table': 'class_487E', 'settings_table': 'settings_487E'},
-            'cap_487V': {'sheet_name': 'CAP_487V', 'class_table': 'class_487V', 'settings_table': 'settings_487V'}
+            'cap_487V': {'sheet_name': 'CAP_487V', 'class_table': 'class_487V', 'settings_table': 'settings_487V'},
+            'bus_587Z': {'sheet_name': 'BUS_587Z', 'class_table': 'class_587Z', 'settings_table': 'settings_587Z'},
+            'mtr_735': {'sheet_name': 'Meter_735', 'class_table': 'class_735', 'settings_table': 'settings_735'}
         }
         
         self.show_selection_screen()
@@ -58,6 +60,14 @@ class SettingsGUI:
         cap_btn = ttk.Button(selection_frame, text="CAP 487V", style='Large.TButton',
                               command=lambda: self.on_type_selected('cap_487V'))
         cap_btn.grid(row=2, column=1, padx=10, pady=10, sticky=(tk.W, tk.E))
+
+        busz_btn = ttk.Button(selection_frame, text="BUS 587Z", style='Large.TButton',
+                             command=lambda: self.on_type_selected('bus_587Z'))
+        busz_btn.grid(row=3, column=0, padx=10, pady=10, sticky=(tk.W, tk.E))
+
+        mtr_btn = ttk.Button(selection_frame, text="MTR 735", style='Large.TButton',
+                              command=lambda: self.on_type_selected('mtr_735'))
+        mtr_btn.grid(row=3, column=1, padx=10, pady=10, sticky=(tk.W, tk.E))
         
         # Configure grid weights
         selection_frame.grid_columnconfigure(0, weight=1)
@@ -85,7 +95,9 @@ class SettingsGUI:
             'feeder': "Feeder 351S Settings",
             'hv': "HV 351S Settings",
             'xfmr_487E': "Transformer 487E Settings",
-            'cap_487V': "Capacitor Bank 487V Settings"
+            'cap_487V': "Capacitor Bank 487V Settings",
+            'bus_587Z': "Bus Differential 587Z Settings",
+            'mtr_735': "Meter 735 Settings"
         }
         title_text = title_map.get(self.selected_type, "Relay Settings")
         title_label = ttk.Label(main_frame, text=title_text, font=('Helvetica', 12, 'bold'))
