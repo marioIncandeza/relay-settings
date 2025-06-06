@@ -55,7 +55,7 @@ def update_template_400(word_bits):
             file_handle.close()
 
 
-def get_wordbits(relay, settings, pmu=True, mtr=False):
+def get_wordbits(relay, settings, pmu=True, mtr=False, dpac=False):
     """Extracts word bits from settings table
 
     Args:
@@ -68,6 +68,8 @@ def get_wordbits(relay, settings, pmu=True, mtr=False):
     word_bits = []
     if mtr:
         word_bits.append({'element': 'MID', 'value': relay[0], 'qs_group': None})
+    elif dpac:
+        word_bits.append({'element': 'DID', 'value': relay[0], 'qs_group': None})
     else:
         word_bits.append({'element': 'RID', 'value': relay[0], 'qs_group': None})
     try:
@@ -113,6 +115,7 @@ def gen_settings(xl_path, template_path, output_path, workbook_params):
 
     series_400 = ['XFMR_487E', 'CAP_487V']
     meters = ['Meter_735']
+    dpac = ['DPAC_2440']
     try:
         app = xw.App(visible=False)
         wb = app.books.open(xl_path)
@@ -134,6 +137,8 @@ def gen_settings(xl_path, template_path, output_path, workbook_params):
             if relay[0] is not None:
                 if workbook_params['sheet_name'] in meters:
                     word_bits = get_wordbits(relay, settings, mtr=True)
+                elif workbook_params['sheet_name'] in dpac:
+                    word_bits = get_wordbits(relay, settings, dpac=True)
                 else:
                     word_bits = get_wordbits(relay, settings)
                 # Generate RDB .txt file

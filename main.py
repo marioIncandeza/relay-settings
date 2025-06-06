@@ -21,7 +21,8 @@ class SettingsGUI:
             'xfmr_487E': {'sheet_name': 'XFMR_487E', 'class_table': 'class_487E', 'settings_table': 'settings_487E'},
             'cap_487V': {'sheet_name': 'CAP_487V', 'class_table': 'class_487V', 'settings_table': 'settings_487V'},
             'bus_587Z': {'sheet_name': 'BUS_587Z', 'class_table': 'class_587Z', 'settings_table': 'settings_587Z'},
-            'mtr_735': {'sheet_name': 'Meter_735', 'class_table': 'class_735', 'settings_table': 'settings_735'}
+            'mtr_735': {'sheet_name': 'Meter_735', 'class_table': 'class_735', 'settings_table': 'settings_735'},
+            'dpac_2440': {'sheet_name': 'DPAC_2440', 'class_table': 'class_2440', 'settings_table': 'settings_2440'}
         }
         
         self.show_selection_screen()
@@ -68,6 +69,10 @@ class SettingsGUI:
         mtr_btn = ttk.Button(selection_frame, text="MTR 735", style='Large.TButton',
                               command=lambda: self.on_type_selected('mtr_735'))
         mtr_btn.grid(row=3, column=1, padx=10, pady=10, sticky=(tk.W, tk.E))
+
+        dpac_btn = ttk.Button(selection_frame, text="DPAC 2440", style='Large.TButton',
+                             command=lambda: self.on_type_selected('dpac_2440'))
+        dpac_btn.grid(row=4, column=0, padx=10, pady=10, sticky=(tk.W, tk.E))
         
         # Configure grid weights
         selection_frame.grid_columnconfigure(0, weight=1)
@@ -97,7 +102,8 @@ class SettingsGUI:
             'xfmr_487E': "Transformer 487E Settings",
             'cap_487V': "Capacitor Bank 487V Settings",
             'bus_587Z': "Bus Differential 587Z Settings",
-            'mtr_735': "Meter 735 Settings"
+            'mtr_735': "Meter 735 Settings",
+            'dpac_2440': "DPAC 2440 Settings"
         }
         title_text = title_map.get(self.selected_type, "Relay Settings")
         title_label = ttk.Label(main_frame, text=title_text, font=('Helvetica', 12, 'bold'))
@@ -162,7 +168,7 @@ class SettingsGUI:
             self.root.update()
             
             # Choose the appropriate generation function
-            gen_function = gen_settings  # _351S if self.selected_type == 'feeder' else gen_settings_HV351S
+            gen_function = gen_settings
             
             gen_function(
                 xl_path=self.xl_path.get(),
