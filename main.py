@@ -16,13 +16,15 @@ class SettingsGUI:
         self.selected_type = None
         self.workbook_params = None
         self.workbook_data = {
-            'feeder': {'sheet_name': 'Feeder_351S', 'class_table': 'class_351S', 'settings_table': 'settings_351S'},
+            'feeder': {'sheet_name': 'FDR_351S', 'class_table': 'class_351S', 'settings_table': 'settings_351S'},
             'hv': {'sheet_name': 'HV_351S', 'class_table': 'class_HV351S', 'settings_table': 'settings_HV351S'},
             'xfmr_487E': {'sheet_name': 'XFMR_487E', 'class_table': 'class_487E', 'settings_table': 'settings_487E'},
             'cap_487V': {'sheet_name': 'CAP_487V', 'class_table': 'class_487V', 'settings_table': 'settings_487V'},
             'bus_587Z': {'sheet_name': 'BUS_587Z', 'class_table': 'class_587Z', 'settings_table': 'settings_587Z'},
             'mtr_735': {'sheet_name': 'Meter_735', 'class_table': 'class_735', 'settings_table': 'settings_735'},
-            'dpac_2440': {'sheet_name': 'DPAC_2440', 'class_table': 'class_2440', 'settings_table': 'settings_2440'}
+            'dpac_2440': {'sheet_name': 'DPAC_2440', 'class_table': 'class_2440', 'settings_table': 'settings_2440'},
+            'xfmr_787': {'sheet_name': 'XFMR_787', 'class_table': 'class_787', 'settings_table': 'settings_787'},
+            'line_411L': {'sheet_name': 'Line_411L', 'class_table': 'class_411L', 'settings_table': 'settings_411L'}
         }
         
         self.show_selection_screen()
@@ -73,6 +75,14 @@ class SettingsGUI:
         dpac_btn = ttk.Button(selection_frame, text="DPAC 2440", style='Large.TButton',
                              command=lambda: self.on_type_selected('dpac_2440'))
         dpac_btn.grid(row=4, column=0, padx=10, pady=10, sticky=(tk.W, tk.E))
+
+        xfmr_787_btn = ttk.Button(selection_frame, text="XFMR 787", style='Large.TButton',
+                                  command=lambda: self.on_type_selected('xfmr_787'))
+        xfmr_787_btn.grid(row=4, column=1, padx=10, pady=10, sticky=(tk.W, tk.E))
+
+        line_411L_btn = ttk.Button(selection_frame, text="LINE 411L", style='Large.TButton',
+                                   command=lambda: self.on_type_selected('line_411L'))
+        line_411L_btn.grid(row=5, column=0, padx=10, pady=10, sticky=(tk.W, tk.E))
         
         # Configure grid weights
         selection_frame.grid_columnconfigure(0, weight=1)
@@ -103,7 +113,9 @@ class SettingsGUI:
             'cap_487V': "Capacitor Bank 487V Settings",
             'bus_587Z': "Bus Differential 587Z Settings",
             'mtr_735': "Meter 735 Settings",
-            'dpac_2440': "DPAC 2440 Settings"
+            'dpac_2440': "DPAC 2440 Settings",
+            'xfmr_787': "Transformer 787 Settings",
+            'line_411L': "Line 411L Settings"
         }
         title_text = title_map.get(self.selected_type, "Relay Settings")
         title_label = ttk.Label(main_frame, text=title_text, font=('Helvetica', 12, 'bold'))
