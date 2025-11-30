@@ -21,7 +21,7 @@ class SettingsGUI:
             'xfmr_487E': {'sheet_name': 'XFMR_487E', 'class_table': 'class_487E', 'settings_table': 'settings_487E'},
             'cap_487V': {'sheet_name': 'CAP_487V', 'class_table': 'class_487V', 'settings_table': 'settings_487V'},
             'bus_587Z': {'sheet_name': 'BUS_587Z', 'class_table': 'class_587Z', 'settings_table': 'settings_587Z'},
-            'mtr_735': {'sheet_name': 'Meter_735', 'class_table': 'class_735', 'settings_table': 'settings_735'},
+            'mtr_735': {'sheet_name': 'MTR_735', 'class_table': 'class_735', 'settings_table': 'settings_735'},
             'dpac_2440': {'sheet_name': 'DPAC_2440', 'class_table': 'class_2440', 'settings_table': 'settings_2440'},
             'xfmr_787': {'sheet_name': 'XFMR_787', 'class_table': 'class_787', 'settings_table': 'settings_787'},
             'line_411L': {'sheet_name': 'Line_411L', 'class_table': 'class_411L', 'settings_table': 'settings_411L'}

@@ -114,7 +114,7 @@ def gen_settings(xl_path, template_path, output_path, workbook_params):
     """
 
     series_400 = ['XFMR_487E', 'CAP_487V', 'Line_411L']
-    meters = ['Meter_735']
+    meters = ['MTR_735']
     dpac = ['DPAC_2440']
     try:
         app = xw.App(visible=False)
