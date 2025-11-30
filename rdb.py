@@ -7,7 +7,7 @@ def update_template_400(word_bits):
     """Updates an SEL rdb template folder structure comprised of .txt files
 
     Args:
-        word_bits (): list comprised of dictionaries {element:val, value:val, qs_group:val}
+        word_bits (): list comprised of dictionaries {element:val, value:val, qs_group:val, comment:val}
         """
 
     clear_groups = ['D1', 'L1', 'L2', 'L3', 'L4', 'L5', 'L6', 'A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'A7', 'A8', 'A9',
@@ -30,7 +30,8 @@ def update_template_400(word_bits):
                                                                       element['qs_group'] is None):
                         index = content.index(line)
                         if element['value']:
-                            content[index] = element['element'] + ',"' + str(element['value']) + '"' + '\x1c\n'
+                            content[index] = element['element'] + ',"' + str(element['value']) + '"' + '\x1c' + \
+                                             str(element['comment']) + '\n'
                         found.append(index)
                         break
 
@@ -46,7 +47,7 @@ def update_template_400(word_bits):
                     index = content.index(line)
                     if index not in found and (line.startswith('DP_NAM') or line.startswith('DP_SIZE')):
                         temp = content[index].split(',')[0]
-                        content[index] = temp + ',""\x1c\n'
+                        content[index] = temp + ',""\x1c' + str(element['comment']) + '\n'
 
             # write new content to file
             file_handle = open(file, 'w', encoding="ascii")
@@ -67,17 +68,17 @@ def get_wordbits(relay, settings, pmu=True, mtr=False, dpac=False):
     float_index = settings[0].index('Float')
     word_bits = []
     if mtr:
-        word_bits.append({'element': 'MID', 'value': relay[0], 'qs_group': None})
+        word_bits.append({'element': 'MID', 'value': relay[0], 'qs_group': None, 'comment': 'Meter ID'})
     elif dpac:
-        word_bits.append({'element': 'DID', 'value': relay[0], 'qs_group': None})
+        word_bits.append({'element': 'DID', 'value': relay[0], 'qs_group': None, 'comment': 'Device ID'})
     else:
-        word_bits.append({'element': 'RID', 'value': relay[0], 'qs_group': None})
+        word_bits.append({'element': 'RID', 'value': relay[0], 'qs_group': None, 'comment': 'Relay ID'})
     try:
-        word_bits.append({'element': 'IPADDR', 'value': relay[3], 'qs_group': None})
+        word_bits.append({'element': 'IPADDR', 'value': relay[3], 'qs_group': None, 'comment': 'IP Address'})
     except IndexError:
         pass
     if pmu:
-        pmu_id = {'element': 'PMSTN', 'value': relay[0], 'qs_group': None}
+        pmu_id = {'element': 'PMSTN', 'value': relay[0], 'qs_group': None, 'comment': 'Phasor ID'}
         word_bits.append(pmu_id)
     for row in settings[1:]:  # exclude headers
         if row[6] is not None:
@@ -95,11 +96,13 @@ def get_wordbits(relay, settings, pmu=True, mtr=False, dpac=False):
             if row[0] is not None:
                 if isinstance(row[1], float) and row[float_index]:  # Round floats
                     formatted_string = "{:.2f}".format(row[1])  # To 2 decimal places
-                    word_bits.append({'element': row[0], 'value': formatted_string, 'qs_group': row[8]})
+                    word_bits.append(
+                        {'element': row[0], 'value': formatted_string, 'qs_group': row[8], 'comment': row[2]})
                 elif isinstance(row[1], float):
-                    word_bits.append({'element': row[0], 'value': str(int(row[1])), 'qs_group': row[8]})
+                    word_bits.append(
+                        {'element': row[0], 'value': str(int(row[1])), 'qs_group': row[8], 'comment': row[2]})
                 else:
-                    word_bits.append({'element': row[0], 'value': row[1], 'qs_group': row[8]})
+                    word_bits.append({'element': row[0], 'value': row[1], 'qs_group': row[8], 'comment': row[2]})
     return word_bits
 
 
@@ -160,7 +163,7 @@ def update_template(word_bits):
     """Updates an SEL rdb template folder structure comprised of .txt files
 
     Args:
-        word_bits (list): list comprised of dictionaries {element:val, value:val, qs_group:val}
+        word_bits (list): list comprised of dictionaries {element:val, value:val, qs_group:val, comment:val}
         """
 
     file_names = os.listdir('.')
@@ -180,7 +183,8 @@ def update_template(word_bits):
                     if line.startswith(element['element'] + ',') and (settings_group == element['qs_group'] or
                                                                       element['qs_group'] is None):
                         index = content.index(line)
-                        content[index] = element['element'] + ',"' + str(element['value']) + '"' + '\x1c\n'
+                        content[index] = element['element'] + ',"' + str(element['value']) + '"' + '\x1c' + \
+                                         str(element['comment']) + '\n'
                         found.append(index)
                         break
 
