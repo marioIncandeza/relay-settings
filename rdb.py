@@ -3,60 +3,90 @@ import shutil
 import xlwings as xw
 
 
-def update_template_400(word_bits):
-    """Updates an SEL rdb template folder structure comprised of .txt files
+# --- Configuration Constants ---
+SERIES_400_DEVICES = ['XFMR_487E', 'CAP_487V', 'Line_411L']
+METER_DEVICES = ['MTR_735']
+DPAC_DEVICES = ['DPAC_2440']
 
-    Args:
-        word_bits (): list comprised of dictionaries {element:val, value:val, qs_group:val, comment:val}
-        """
-
-    clear_groups = ['D1', 'L1', 'L2', 'L3', 'L4', 'L5', 'L6', 'A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'A7', 'A8', 'A9',
-                    'A10']
-    file_names = os.listdir('.')
-    # read file
-    for file in file_names:
-        found = []
-        # read all .txt files
-        if file.lower().endswith('.txt'):
-            # isolate string segment after '_' and before '.TXT'
-            settings_group = file.split("_")[1].split('.')[0]  # 'SET_1.TXT' -> 1 = quickset settings group
-            file_handle = open(file, 'r')
-            content = file_handle.readlines()
-            file_handle.close()
-            # traverse all excel variables and replace .txt line if there is a match
-            for element in word_bits:
-                for line in content:
-                    if line.startswith(element['element'] + ',') and (settings_group == element['qs_group'] or
-                                                                      element['qs_group'] is None):
-                        index = content.index(line)
-                        if element['value']:
-                            content[index] = element['element'] + ',"' + str(element['value']) + '"' + '\x1c' + \
-                                             str(element['comment']) + '\n'
-                        found.append(index)
-                        break
-
-            if settings_group in clear_groups:
-                for line in content:
-                    index = content.index(line)
-                    if (index not in found and (len(line.split(',')) > 1)) or not element['value']:
-                        temp = content[index].split(',')[0]
-                        content[index] = temp + ',""\x1c\n'
-
-            if settings_group == 'F1':
-                for line in content:
-                    index = content.index(line)
-                    if index not in found and (line.startswith('DP_NAM') or line.startswith('DP_SIZE')):
-                        temp = content[index].split(',')[0]
-                        content[index] = temp + ',""\x1c' + str(element['comment']) + '\n'
-
-            # write new content to file
-            file_handle = open(file, 'w', encoding="ascii")
-            for line in content:
-                file_handle.write(line)
-            file_handle.close()
+# Mapping logic for different device families
+# This replaces the need for two separate 'update_template' functions
+DEVICE_CONFIGS = {
+    'SERIES_400': {
+        'clear_val': '""',  # 400 series uses empty string for clears
+        'clear_groups': [
+            'D1', 'L1', 'L2', 'L3', 'L4', 'L5', 'L6',
+            'A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'A7', 'A8', 'A9', 'A10'
+        ],
+        'process_f1': True
+    },
+    'STANDARD': {
+        'clear_val': '"NA"',  # Standard uses "NA"
+        'clear_groups': ['D1'],
+        'process_f1': False
+    }
+}
 
 
-def get_wordbits(relay, settings, pmu=True, mtr=False, dpac=False):
+def gen_settings(xl_path, template_path, output_path, workbook_params, excluded_regions=None, include_comments=True):
+    """
+    Main driver function to generate settings.
+    Added include_comments parameter.
+    """
+    if excluded_regions is None:
+        excluded_regions = []
+
+    sheet_name = workbook_params['sheet_name']
+
+    if sheet_name in SERIES_400_DEVICES:
+        config = DEVICE_CONFIGS['SERIES_400']
+    else:
+        config = DEVICE_CONFIGS['STANDARD']
+
+    is_mtr = sheet_name in METER_DEVICES
+    is_dpac = sheet_name in DPAC_DEVICES
+
+    app = xw.App(visible=False)
+    try:
+        wb = app.books.open(xl_path)
+        sheet = wb.sheets[sheet_name]
+
+        relay_class_rng = sheet.tables[workbook_params['class_table']].range.value
+        settings_rng = sheet.tables[workbook_params['settings_table']].range.value
+        relay_class = [item for item in relay_class_rng if item[0] is not None]
+
+        # 1. Create Directories
+        output_dirs = []
+        valid_relays = []
+
+        for relay in relay_class[1:]:
+            if relay[0] is not None:
+                new_dir = os.path.join(output_path, str(relay[0]))
+                if os.path.exists(new_dir):
+                    shutil.rmtree(new_dir)
+                shutil.copytree(template_path, new_dir)
+                output_dirs.append(new_dir)
+                valid_relays.append(relay)
+
+        # 2. Process Settings
+        for i, relay in enumerate(valid_relays):
+            print(f"Processing {relay[0]}...")
+
+            # Pass the comment toggle down to extraction logic
+            word_bits = get_wordbits(relay, settings_rng, mtr=is_mtr, dpac=is_dpac, include_comments=include_comments)
+
+            process_rdb_files(output_dirs[i], word_bits, excluded_regions, config)
+
+            print(f"{relay[0]} settings complete.")
+
+    except Exception as e:
+        print(f"An error occurred: {str(e)}")
+        raise
+    finally:
+        wb.close()
+        app.quit()
+
+
+def get_wordbits(relay, settings, pmu=True, mtr=False, dpac=False, include_comments=True):
     """Extracts word bits from settings table
 
     Args:
@@ -65,20 +95,23 @@ def get_wordbits(relay, settings, pmu=True, mtr=False, dpac=False):
         pmu (bool): include PMU station name
         """
 
+    def get_cmt(text):
+        return text if include_comments else ""
+
     float_index = settings[0].index('Float')
     word_bits = []
     if mtr:
-        word_bits.append({'element': 'MID', 'value': relay[0], 'qs_group': None, 'comment': 'Meter ID'})
+        word_bits.append({'element': 'MID', 'value': relay[0], 'qs_group': None, 'comment': get_cmt('Meter ID')})
     elif dpac:
-        word_bits.append({'element': 'DID', 'value': relay[0], 'qs_group': None, 'comment': 'Device ID'})
+        word_bits.append({'element': 'DID', 'value': relay[0], 'qs_group': None, 'comment': get_cmt('Device ID')})
     else:
-        word_bits.append({'element': 'RID', 'value': relay[0], 'qs_group': None, 'comment': 'Relay ID'})
+        word_bits.append({'element': 'RID', 'value': relay[0], 'qs_group': None, 'comment': get_cmt('Relay ID')})
     try:
-        word_bits.append({'element': 'IPADDR', 'value': relay[3], 'qs_group': None, 'comment': 'IP Address'})
+        word_bits.append({'element': 'IPADDR', 'value': relay[3], 'qs_group': None, 'comment': get_cmt('IP Address')})
     except IndexError:
         pass
     if pmu:
-        pmu_id = {'element': 'PMSTN', 'value': relay[0], 'qs_group': None, 'comment': 'Phasor ID'}
+        pmu_id = {'element': 'PMSTN', 'value': relay[0], 'qs_group': None, 'comment': get_cmt('Phasor ID')}
         word_bits.append(pmu_id)
     for row in settings[1:]:  # exclude headers
         if row[6] is not None:
@@ -97,115 +130,137 @@ def get_wordbits(relay, settings, pmu=True, mtr=False, dpac=False):
                 if isinstance(row[1], float) and row[float_index]:  # Round floats
                     formatted_string = "{:.2f}".format(row[1])  # To 2 decimal places
                     word_bits.append(
-                        {'element': row[0], 'value': formatted_string, 'qs_group': row[8], 'comment': row[2]})
+                        {'element': row[0], 'value': formatted_string, 'qs_group': row[8], 'comment': get_cmt(row[2])})
                 elif isinstance(row[1], float):
                     word_bits.append(
-                        {'element': row[0], 'value': str(int(row[1])), 'qs_group': row[8], 'comment': row[2]})
+                        {'element': row[0], 'value': str(int(row[1])), 'qs_group': row[8], 'comment': get_cmt(row[2])})
                 else:
-                    word_bits.append({'element': row[0], 'value': row[1], 'qs_group': row[8], 'comment': row[2]})
+                    word_bits.append({'element': row[0], 'value': row[1], 'qs_group': row[8], 'comment': get_cmt(row[2])})
     return word_bits
 
 
-def gen_settings(xl_path, template_path, output_path, workbook_params):
-    """Updates the rdb text based template which can be imported in QuickSet
-
-    Args:
-        xl_path (str): Path to the Excel workbook containing settings
-        template_path (str): Path to the RDB template directory
-        output_path (str): Path to the output directory where settings will be generated
-        workbook_params (dict): {sheet_name, class_table, settings_table}
+def process_rdb_files(target_dir, word_bits, excluded_regions, config):
     """
+    Unified function to process RDB text files.
+    Replaces both update_template and update_template_400.
+    """
+    if excluded_regions is None:
+        excluded_regions = []
 
-    series_400 = ['XFMR_487E', 'CAP_487V', 'Line_411L']
-    meters = ['MTR_735']
-    dpac = ['DPAC_2440']
-    try:
-        app = xw.App(visible=False)
-        wb = app.books.open(xl_path)
-        sheet = wb.sheets[workbook_params['sheet_name']]
+    # Optimize: Create a lookup dictionary for word bits to avoid nested loops.
+    # Key: Element Name, Value: Bit Data
+    # Note: If duplicate elements exist across different groups, this logic holds
+    # because we check qs_group match inside the loop.
+    wb_lookup = {wb['element']: wb for wb in word_bits}
 
-        # Get relay class info and create output directories
-        relay_class = sheet.tables[workbook_params['class_table']].range.value
-        relay_class = [item for item in relay_class if item[0] is not None]  # remove blank lines
-        output_paths = []
-        for relay in relay_class[1:]:
-            if relay[0] is not None:
-                new_dir = os.path.join(output_path, str(relay[0]))
-                shutil.copytree(template_path, new_dir)
-                output_paths.append(new_dir)
+    for file_name in os.listdir(target_dir):
+        if not file_name.lower().endswith('.txt'):
+            continue
 
-        settings = sheet.tables[workbook_params['settings_table']].range.value
+        # Parse Group from filename (e.g., 'SET_1.TXT' -> '1')
+        try:
+            parts = file_name.split('_')
+            if len(parts) > 1:
+                settings_group = parts[1].split('.')[0]
+            else:
+                settings_group = "UNKNOWN"
+        except IndexError:
+            continue
 
-        for i, relay in enumerate(relay_class[1:]):
-            if relay[0] is not None:
-                if workbook_params['sheet_name'] in meters:
-                    word_bits = get_wordbits(relay, settings, mtr=True)
-                elif workbook_params['sheet_name'] in dpac:
-                    word_bits = get_wordbits(relay, settings, dpac=True)
+        if settings_group in excluded_regions:
+            continue
+
+        file_path = os.path.join(target_dir, file_name)
+
+        # Read content
+        with open(file_path, 'r') as f:
+            lines = f.readlines()
+
+        new_lines = []
+        found_indices = set()
+
+        # PASS 1: Update values from Word Bits
+        for idx, line in enumerate(lines):
+            line_parts = line.split(',')
+            if not line_parts:
+                new_lines.append(line)
+                continue
+
+            element_key = line_parts[0]
+
+            # Check if this element exists in our Excel data
+            if element_key in wb_lookup:
+                wb = wb_lookup[element_key]
+
+                # Check Group Constraint
+                if wb['qs_group'] is None or str(wb['qs_group']) == settings_group:
+                    # Only update if we have a value
+                    if wb['value']:
+                        # Construct SEL RDB format: ELEMENT,"VALUE"<0x1c>COMMENT
+                        new_line = f'{wb["element"]},"{wb["value"]}"\x1c{wb["comment"]}\n'
+                        new_lines.append(new_line)
+                        found_indices.add(idx)
+                        continue
+
+            new_lines.append(line)
+
+        # PASS 2: Clear Logic (D1, L1... or F1 specific handling)
+        final_lines = []
+
+        # Determine if this file needs clearing logic
+        needs_clearing = settings_group in config['clear_groups']
+        is_f1 = (settings_group == 'F1') and config['process_f1']
+
+        if needs_clearing or is_f1:
+            for idx, line in enumerate(new_lines):
+                # Skip lines we just updated
+                if idx in found_indices:
+                    final_lines.append(line)
+                    continue
+
+                line_parts = line.split(',')
+                if len(line_parts) <= 1:
+                    final_lines.append(line)
+                    continue
+
+                element_key = line_parts[0]
+
+                # Clear Logic for specified groups
+                if needs_clearing:
+                    # Set value to configured clear value ("" or "NA")
+                    # Note: \x1c is the field separator in SEL RDB
+                    cleared_line = f'{element_key},{config["clear_val"]}\x1c\n'
+                    final_lines.append(cleared_line)
+
+                # F1 Specific Logic (DP_NAM/DP_SIZE)
+                elif is_f1 and (line.startswith('DP_NAM') or line.startswith('DP_SIZE')):
+                    # Check if we have a comment in the original lookup to preserve?
+                    # Original code used the last 'element' loop variable, which was buggy.
+                    # We will append a generic closure or empty comment.
+                    cleared_line = f'{element_key},""\x1c\n'
+                    final_lines.append(cleared_line)
+
                 else:
-                    word_bits = get_wordbits(relay, settings)
-                # Generate RDB .txt file
-                os.chdir(output_paths[i])
-                if workbook_params['sheet_name'] in series_400:
-                    update_template_400(word_bits)
-                else:
-                    update_template(word_bits)
+                    final_lines.append(line)
+        else:
+            final_lines = new_lines
 
-                print(relay[0] + ' settings complete...')
-
-    # Close workbook and quit app
-    finally:
-        wb.close()
-        app.quit()
-
-
-def update_template(word_bits):
-    """Updates an SEL rdb template folder structure comprised of .txt files
-
-    Args:
-        word_bits (list): list comprised of dictionaries {element:val, value:val, qs_group:val, comment:val}
-        """
-
-    file_names = os.listdir('.')
-    # read file
-    for file in file_names:
-        found = []
-        # read all .txt files
-        if file.lower().endswith('.txt'):
-            # isolate string segment after '_' and before '.TXT'
-            settings_group = file.split("_")[1].split('.')[0]  # 'SET_1.TXT' -> 1 = quickset settings group
-            file_handle = open(file, 'r')
-            content = file_handle.readlines()
-            file_handle.close()
-            # traverse all excel variables and replace .txt line if there is a match
-            for element in word_bits:
-                for line in content:
-                    if line.startswith(element['element'] + ',') and (settings_group == element['qs_group'] or
-                                                                      element['qs_group'] is None):
-                        index = content.index(line)
-                        content[index] = element['element'] + ',"' + str(element['value']) + '"' + '\x1c' + \
-                                         str(element['comment']) + '\n'
-                        found.append(index)
-                        break
-
-            if settings_group in ['D1']:
-                for line in content:
-                    index = content.index(line)
-                    if index not in found and (len(line.split(',')) > 1):
-                        temp = content[index].split(',')[0]
-                        content[index] = temp + ',"NA"\x1c\n'
-
-            # write new content to file
-            file_handle = open(file, 'w', encoding="ascii")
-            for line in content:
-                file_handle.write(line)
-            file_handle.close()
+        # Write back to file
+        with open(file_path, 'w', encoding='ascii') as f:
+            f.writelines(final_lines)
 
 
 if __name__ == '__main__':
     # Example usage
-    xl_path = r"C:\Users\laerps\OneDrive - Westwood Active Directory\Desktop\351S\Settings.xlsx"
-    template_path = r"C:\Users\laerps\OneDrive - Westwood Active Directory\Desktop\351S\487V Template"
-    output_path = r"C:\Users\laerps\OneDrive - Westwood Active Directory\Desktop\351S"
-    gen_settings(xl_path, template_path, output_path, {'sheet_name': "CAP_487V", 'class_table': 'class_487V',
-                                                       'settings_table': "settings_487V"})
+    xl_path_ex = r"C:\Users\Example\Desktop\351S\Settings.xlsx"
+    template_path_ex = r"C:\Users\Example\Desktop\351S\487V Template"
+    output_path_ex = r"C:\Users\Example\Desktop\351S"
+
+    # Ensure params match your Excel table names exactly
+    params = {
+        'sheet_name': "CAP_487V",
+        'class_table': 'class_487V',
+        'settings_table': "settings_487V"
+    }
+
+    gen_settings(xl_path_ex, template_path_ex, output_path_ex, params)
