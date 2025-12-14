@@ -1,0 +1,5 @@
+streamlit
+xlwings
+python-docx
+natsort
+pywin32

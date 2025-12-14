@@ -27,6 +27,55 @@ DEVICE_CONFIGS = {
 }
 
 
+# --- Shared Configuration data (Moved from main.py) ---
+RELAY_CONFIG = {
+    'feeder': {'label': 'Feeder 351S', 'params': {'sheet_name': 'FDR_351S', 'class_table': 'class_351S',
+                                                  'settings_table': 'settings_351S'}},
+    'hv': {'label': 'HV 351S', 'params': {'sheet_name': 'HV_351S', 'class_table': 'class_HV351S',
+                                          'settings_table': 'settings_HV351S'}},
+    'xfmr_487E': {'label': 'XFMR 487E', 'params': {'sheet_name': 'XFMR_487E', 'class_table': 'class_487E',
+                                                   'settings_table': 'settings_487E'}},
+    'cap_487V': {'label': 'CAP 487V', 'params': {'sheet_name': 'CAP_487V', 'class_table': 'class_487V',
+                                                 'settings_table': 'settings_487V'}},
+    'bus_587Z': {'label': 'BUS 587Z', 'params': {'sheet_name': 'BUS_587Z', 'class_table': 'class_587Z',
+                                                 'settings_table': 'settings_587Z'}},
+    'mtr_735': {'label': 'MTR 735', 'params': {'sheet_name': 'MTR_735', 'class_table': 'class_735',
+                                               'settings_table': 'settings_735'}},
+    'dpac_2440': {'label': 'DPAC 2440', 'params': {'sheet_name': 'DPAC_2440', 'class_table': 'class_2440',
+                                                   'settings_table': 'settings_2440'}},
+    'xfmr_787': {'label': 'XFMR 787', 'params': {'sheet_name': 'XFMR_787', 'class_table': 'class_787',
+                                                 'settings_table': 'settings_787'}},
+    'line_411L': {'label': 'LINE 411L', 'params': {'sheet_name': 'Line_411L', 'class_table': 'class_411L',
+                                                   'settings_table': 'settings_411L'}}
+}
+
+# Shared definition for 351S style groups
+_common_351_groups = {
+    "labels": [f"Group {i}" for i in range(1, 7)] + [f"Logic {i}" for i in range(1, 7)],
+    "shorthand": {**{f"Group {i}": str(i) for i in range(1, 7)}, **{f"Logic {i}": f"L{i}" for i in range(1, 7)}}
+}
+
+_common_400_groups = {
+    "labels": [f"Set {i}" for i in range(1, 7)] + [f"Protection Logic {i}" for i in range(1, 7)],
+    "shorthand": {**{f"Set {i}": f"S{i}" for i in range(1, 7)},
+                  **{f"Protection Logic {i}": f"L{i}" for i in range(1, 7)}}
+}
+
+_common_787_groups = {
+    "labels": [f"Set {i}" for i in range(1, 5)] + [f"Logic {i}" for i in range(1, 5)],
+    "shorthand": {**{f"Set {i}": str(i) for i in range(1, 5)}, **{f"Logic {i}": f"L{i}" for i in range(1, 5)}}
+}
+
+RELAY_REGION_METADATA = {
+    "feeder": _common_351_groups,
+    "hv": _common_351_groups,
+    "xfmr_487E": _common_400_groups,
+    "cap_487V": _common_400_groups,
+    "xfmr_787": _common_787_groups,
+    "line_411L": _common_400_groups
+}
+
+
 def gen_settings(xl_path, template_path, output_path, workbook_params, excluded_regions=None, include_comments=True):
     """
     Main driver function to generate settings.
