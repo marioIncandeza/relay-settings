@@ -86,6 +86,42 @@ def gen_settings(xl_path, template_path, output_path, workbook_params, excluded_
         app.quit()
 
 
+def get_relay_preview(xl_path, workbook_params):
+    """
+    Reads the Class Table from the workbook for preview purposes.
+    Returns: List of dictionaries [{'rid': 'Relay1', 'set_class': 'A', 'log_class': 'L1'}, ...]
+    """
+    import xlwings as xw
+
+    preview_data = []
+    app = xw.App(visible=False)
+    try:
+        wb = app.books.open(xl_path)
+        sheet = wb.sheets[workbook_params['sheet_name']]
+
+        # Read the class table range
+        raw_data = sheet.tables[workbook_params['class_table']].range.value
+
+        # Parse data (Skipping header row)
+        # Assuming structure: [RelayID, SettingsClass, LogicClass, IP, ...]
+        for row in raw_data[1:]:
+            if row[0]:  # Ensure Relay ID exists
+                preview_data.append({
+                    'rid': row[0],
+                    'set_class': str(row[1]) if row[1] else "-",
+                    'log_class': str(row[2]) if row[2] else "-",
+                    'ip': str(row[3]) if len(row) > 3 and row[3] else "-"
+                })
+
+    except Exception as e:
+        raise Exception(f"Failed to read workbook: {str(e)}")
+    finally:
+        if 'wb' in locals(): wb.close()
+        app.quit()
+
+    return preview_data
+
+
 def get_wordbits(relay, settings, pmu=True, mtr=False, dpac=False, include_comments=True):
     """Extracts word bits from settings table
 

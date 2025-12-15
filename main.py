@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import ttk, filedialog, messagebox
-from rdb import gen_settings
+from rdb import gen_settings, get_relay_preview
 
 
 class SettingsGUI:
@@ -83,17 +83,36 @@ class SettingsGUI:
         self.root.grid_rowconfigure(0, weight=1)
         self.root.grid_columnconfigure(0, weight=1)
 
-        ttk.Label(selection_frame, text="Select Relay Type", font=('Helvetica', 14, 'bold')).grid(row=0, column=0,
-                                                                                                  columnspan=2,
-                                                                                                  pady=(0, 20))
+        # --- 1. NEW: Branding (Logo) ---
+        # We place this at Row 0.
+        # Note: We use tk.Label to force the red color.
+        tk.Label(
+            selection_frame,
+            text="Westwood",
+            font=("Helvetica", 30, "bold"),
+            foreground="#E31837",  # The Logo Red
+        ).grid(row=0, column=0, columnspan=2, pady=(0, 5))
 
+        # --- 2. Instruction Label ---
+        # Moved to Row 1 (was Row 0)
+        ttk.Label(
+            selection_frame,
+            text="Select Relay Type",
+            font=('Helvetica', 14, 'bold')
+        ).grid(row=1, column=0, columnspan=2, pady=(0, 20))
+
+        # --- 3. Relay Buttons ---
         style = ttk.Style()
         style.configure('Large.TButton', padding=10)
 
         keys = list(self.relay_config.keys())
         for index, key in enumerate(keys):
-            row = (index // 2) + 1
+            # CALCULATE ROW:
+            # We used Row 0 (Logo) and Row 1 (Title), so buttons start at Row 2.
+            # (index // 2) calculates the offset, + 2 adds the starting row.
+            row = (index // 2) + 2
             col = index % 2
+
             btn = ttk.Button(
                 selection_frame,
                 text=self.relay_config[key]['label'],
@@ -121,53 +140,99 @@ class SettingsGUI:
 
         main_frame = ttk.Frame(self.root, padding="15")
         main_frame.grid(row=0, column=0, sticky="nsew")
+
+        # Configure the root grid to expand
         self.root.grid_rowconfigure(0, weight=1)
         self.root.grid_columnconfigure(0, weight=1)
 
-        # Header
+        # --- 1. HEADER FRAME (Title Left, Back Button Right) ---
+        header_frame = ttk.Frame(main_frame)
+        # Span all columns (0, 1, 2, 3) so it fills the full width
+        header_frame.grid(row=0, column=0, columnspan=4, sticky="ew", pady=(0, 15))
+
+        # --- 1. HEADER FRAME ---
+        header_frame = ttk.Frame(main_frame)
+        header_frame.grid(row=0, column=0, columnspan=4, sticky="ew", pady=(0, 15))
+
+        # --- A. LEFT CONTAINER (Holds Logo & Title Stacked) ---
+        # We create a sub-frame to hold the text vertically
+        title_container = ttk.Frame(header_frame)
+        title_container.pack(side="left")  # Pin this whole container to the left
+
+        # 1. The Logo (Top)
+        # Using the text-based logo approach from before:
+        tk.Label(
+            title_container,
+            text="Westwood",
+            font=("Arial", 20, "bold"),
+            foreground="#E31837"
+        ).pack(side="top", anchor="w")  # anchor="w" aligns it to the left
+
+        # 2. The Title (Bottom)
         title_text = f"{self.relay_config[self.selected_type]['label']} Settings"
-        ttk.Label(main_frame, text=title_text, font=('Helvetica', 12, 'bold')).grid(row=0, column=0, columnspan=2,
-                                                                                    sticky="w", pady=(0, 15))
+        ttk.Label(
+            title_container,
+            text=title_text,
+            font=('Helvetica', 12, 'bold')
+        ).pack(side="top", anchor="w")  # anchor="w" aligns it to the left
 
-        ttk.Button(main_frame, text="← Back", command=self.show_selection_screen).grid(row=0, column=2, sticky="e")
+        # --- B. RIGHT SIDE BUTTONS ---
+        # Back Button
+        ttk.Button(header_frame, text="← Back", command=self.show_selection_screen).pack(side="right")
 
-        # File Selectors
-        self.create_path_selector(main_frame, "Settings Workbook:", self.xl_path, self.browse_excel, 1)
+        # --- 2. FILE SELECTORS ---
+        # Note: These start at row=1 because the header is row=0
+        self.create_path_selector(
+            main_frame,
+            "Settings Workbook:",
+            self.xl_path,
+            self.browse_excel,
+            1,
+            preview_cmd=self.preview_workbook
+        )
         self.create_path_selector(main_frame, "RDB Template Dir:", self.template_path, self.browse_template, 2)
         self.create_path_selector(main_frame, "Output Directory:", self.output_path, self.browse_output, 3)
 
-        # Region Selectors (Conditional)
+        # --- 3. REGION SELECTORS ---
         current_row = 4
         if self.selected_type in self.relay_region_metadata:
             self.build_region_selectors(main_frame, row_idx=4)
             current_row = 5
 
-        # Separator
-        ttk.Separator(main_frame, orient='horizontal').grid(row=current_row, column=0, columnspan=3, sticky="ew",
+        # --- 4. SEPARATOR ---
+        ttk.Separator(main_frame, orient='horizontal').grid(row=current_row, column=0, columnspan=4, sticky="ew",
                                                             pady=15)
 
-        # --- NEW CHECKBOX ---
-        # This will be on row current_row + 1
+        # --- 5. OPTIONS (Comments Checkbox) ---
         options_frame = ttk.Frame(main_frame)
-        options_frame.grid(row=current_row + 1, column=0, columnspan=3, sticky="w")
+        options_frame.grid(row=current_row + 1, column=0, columnspan=4, sticky="w")
         ttk.Checkbutton(options_frame, text="Include Comments in RDB", variable=self.include_comments).pack(side="left")
 
-        # Actions
-        # The Generate button must now be on row current_row + 2
+        # --- 6. ACTIONS (Generate Button) ---
         generate_btn = ttk.Button(main_frame, text="Generate Settings", command=self.generate_settings,
                                   style='Large.TButton')
-        generate_btn.grid(row=current_row + 2, column=0, columnspan=3, pady=10, sticky="ew") # <-- Row index corrected
+        generate_btn.grid(row=current_row + 2, column=0, columnspan=4, pady=10, sticky="ew")
 
+        # Status Label
         ttk.Label(main_frame, textvariable=self.status_var, foreground="blue").grid(row=current_row + 3, column=0,
-                                                                                    columnspan=3)
+                                                                                    columnspan=4)
 
+        # Ensure the middle column (Input fields) expands
         main_frame.grid_columnconfigure(1, weight=1)
 
-    def create_path_selector(self, parent, label, variable, cmd, row):
+    def create_path_selector(self, parent, label, variable, cmd, row, preview_cmd=None):
+        """Updated helper to support an optional 4th column button (Preview)"""
         ttk.Label(parent, text=label).grid(row=row, column=0, sticky="w", pady=5)
         entry = ttk.Entry(parent, textvariable=variable)
         entry.grid(row=row, column=1, padx=5, sticky="ew")
-        ttk.Button(parent, text="Browse...", command=cmd).grid(row=row, column=2)
+
+        # Browse Button
+        browse_btn = ttk.Button(parent, text="Browse...", command=cmd)
+        browse_btn.grid(row=row, column=2, padx=(0, 5))
+
+        # Optional Preview Button (Only for Workbook row)
+        if preview_cmd:
+            ttk.Button(parent, text="Preview", width=8, command=preview_cmd).grid(row=row, column=3)
 
     def browse_excel(self):
         filename = filedialog.askopenfilename(title="Select Workbook", filetypes=[("Excel files", "*.xlsx *.xls")])
@@ -220,6 +285,58 @@ class SettingsGUI:
         region_frame.grid_columnconfigure(0, weight=1)
         region_frame.grid_columnconfigure(1, weight=1)
         region_frame.grid_columnconfigure(2, weight=1)
+
+    def preview_workbook(self):
+        """Launches a popup window displaying the Relay Class table."""
+        if not self.xl_path.get():
+            messagebox.showerror("Error", "Please select a workbook first.")
+            return
+
+        try:
+            self.status_var.set("Loading preview...")
+            self.root.update()
+
+            # 1. Get Data from Backend
+            data = get_relay_preview(self.xl_path.get(), self.workbook_params)
+
+            # 2. Create Popup Window
+            top = tk.Toplevel(self.root)
+            top.title(f"Preview: {self.relay_config[self.selected_type]['label']}")
+            top.geometry("600x400")
+
+            # 3. Create Treeview (Table)
+            columns = ('rid', 'set_class', 'log_class', 'ip')
+            tree = ttk.Treeview(top, columns=columns, show='headings')
+
+            # Define Headings
+            tree.heading('rid', text='Relay ID')
+            tree.heading('set_class', text='Settings Class')
+            tree.heading('log_class', text='Logic Class')
+            tree.heading('ip', text='IP Address')
+
+            # Define Columns Width/Alignment
+            tree.column('rid', width=150, anchor='center')
+            tree.column('set_class', width=100, anchor='center')
+            tree.column('log_class', width=100, anchor='center')
+            tree.column('ip', width=120, anchor='center')
+
+            # Add Scrollbar
+            scrollbar = ttk.Scrollbar(top, orient=tk.VERTICAL, command=tree.yview)
+            tree.configure(yscroll=scrollbar.set)
+
+            # Layout
+            tree.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
+            scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+
+            # 4. Insert Data
+            for item in data:
+                tree.insert('', tk.END, values=(item['rid'], item['set_class'], item['log_class'], item['ip']))
+
+            self.status_var.set("Preview loaded.")
+
+        except Exception as e:
+            self.status_var.set("Error loading preview")
+            messagebox.showerror("Preview Error", str(e))
 
     def generate_settings(self):
         if not all([self.xl_path.get(), self.template_path.get(), self.output_path.get()]):
