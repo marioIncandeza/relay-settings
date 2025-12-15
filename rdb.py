@@ -295,8 +295,43 @@ def process_rdb_files(target_dir, word_bits, excluded_regions, config):
             final_lines = new_lines
 
         # Write back to file
+
         with open(file_path, 'w', encoding='ascii') as f:
             f.writelines(final_lines)
+
+
+def get_template_info(template_path):
+    """
+    Parses the [INFO] section of Misc/Cfg.txt in the template directory.
+    Returns a dict of key-value pairs.
+    """
+    cfg_path = os.path.join(template_path, 'Misc', 'Cfg.txt')
+    info_dict = {}
+
+    if not os.path.exists(cfg_path):
+        return info_dict
+
+    try:
+        with open(cfg_path, 'r') as f:
+            lines = f.readlines()
+
+        in_info_section = False
+        for line in lines:
+            line = line.strip()
+            if line == '[INFO]':
+                in_info_section = True
+                continue
+            if line.startswith('['): # Any other section
+                in_info_section = False
+            
+            if in_info_section and '=' in line:
+                key, value = line.split('=', 1)
+                info_dict[key.strip()] = value.strip()
+                
+    except Exception as e:
+        print(f"Error reading template info: {e}")
+
+    return info_dict
 
 
 if __name__ == '__main__':

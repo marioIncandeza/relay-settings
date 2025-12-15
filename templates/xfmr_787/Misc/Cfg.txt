@@ -1,0 +1,31 @@
+[INFO]
+RELAYTYPE=SEL-787-4
+FID=SEL-787-4-Rxxx-Vx-Z005003-Dxxxxxxxx
+BFID=SLBT-787-4-Rxxx-V0-Z003002-Dxxxxxxxx
+PARTNO=07872EE1A1A1A79850620
+[CLASSES]
+G,"Global"
+1,"Group 1"
+2,"Group 2"
+3,"Group 3"
+4,"Group 4"
+L1,"Logic 1"
+L2,"Logic 2"
+L3,"Logic 3"
+L4,"Logic 4"
+F,"Front Panel"
+R,"Report"
+PF,"Port F"
+P1,"Port 1"
+P3,"Port 3"
+P4,"Port 4"
+P2,"Port 2"
+M,"Modbus User Map"
+D1,"DNP Map 1 Settings"
+D2,"DNP Map 2 Settings"
+D3,"DNP Map 3 Settings"
+E1,"EtherNet/IP Assembly Map 1 Settings"
+E2,"EtherNet/IP Assembly Map 2 Settings"
+E3,"EtherNet/IP Assembly Map 3 Settings"
+I,"IEC 60870-5-103 Map"
+HMI,"Touchscreen"

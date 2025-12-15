@@ -1,0 +1,106 @@
+[INFO]
+RELAYTYPE=SEL-487V-1
+FID=SEL-487V-1-RXXX-VX-Z006002-DXXXXXXXX
+BFID=SLBT-4XX-R300-V0-Z001002-DXXXXXXXX
+PARTNO=0487V1X4151XB0X4H5B444X
+[A7]
+AUTO_1,""
+AUTO_2,""
+AUTO_3,""
+AUTO_4,""
+AUTO_5,""
+AUTO_6,""
+AUTO_7,""
+AUTO_8,""
+AUTO_9,""
+AUTO_10,""
+AUTO_11,""
+AUTO_12,""
+AUTO_13,""
+AUTO_14,""
+AUTO_15,""
+AUTO_16,""
+AUTO_17,""
+AUTO_18,""
+AUTO_19,""
+AUTO_20,""
+AUTO_21,""
+AUTO_22,""
+AUTO_23,""
+AUTO_24,""
+AUTO_25,""
+AUTO_26,""
+AUTO_27,""
+AUTO_28,""
+AUTO_29,""
+AUTO_30,""
+AUTO_31,""
+AUTO_32,""
+AUTO_33,""
+AUTO_34,""
+AUTO_35,""
+AUTO_36,""
+AUTO_37,""
+AUTO_38,""
+AUTO_39,""
+AUTO_40,""
+AUTO_41,""
+AUTO_42,""
+AUTO_43,""
+AUTO_44,""
+AUTO_45,""
+AUTO_46,""
+AUTO_47,""
+AUTO_48,""
+AUTO_49,""
+AUTO_50,""
+AUTO_51,""
+AUTO_52,""
+AUTO_53,""
+AUTO_54,""
+AUTO_55,""
+AUTO_56,""
+AUTO_57,""
+AUTO_58,""
+AUTO_59,""
+AUTO_60,""
+AUTO_61,""
+AUTO_62,""
+AUTO_63,""
+AUTO_64,""
+AUTO_65,""
+AUTO_66,""
+AUTO_67,""
+AUTO_68,""
+AUTO_69,""
+AUTO_70,""
+AUTO_71,""
+AUTO_72,""
+AUTO_73,""
+AUTO_74,""
+AUTO_75,""
+AUTO_76,""
+AUTO_77,""
+AUTO_78,""
+AUTO_79,""
+AUTO_80,""
+AUTO_81,""
+AUTO_82,""
+AUTO_83,""
+AUTO_84,""
+AUTO_85,""
+AUTO_86,""
+AUTO_87,""
+AUTO_88,""
+AUTO_89,""
+AUTO_90,""
+AUTO_91,""
+AUTO_92,""
+AUTO_93,""
+AUTO_94,""
+AUTO_95,""
+AUTO_96,""
+AUTO_97,""
+AUTO_98,""
+AUTO_99,""
+AUTO_100,""

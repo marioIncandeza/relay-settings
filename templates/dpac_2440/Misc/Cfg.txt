@@ -1,0 +1,17 @@
+[INFO]
+RELAYTYPE=SEL-2440
+FID=SEL-2440-Rxxx-V0-Z009004-Dxxxxxxxx
+BFID=SLBT-2440-Rxxx-V0-Z008004-Dxxxxxxxx
+PARTNO=24402H11A1A11630
+[CLASSES]
+1,"Device Settings"
+L,"Logic Settings"
+G,"Global Settings"
+PF,"Port F Settings"
+P1,"Port 1 Settings"
+P2,"Port 2 Settings"
+P3,"Port 3 Settings"
+R,"Report Settings"
+D1,"DNP Map 1 Settings"
+D2,"DNP Map 2 Settings"
+D3,"DNP Map 3 Settings"

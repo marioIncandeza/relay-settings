@@ -1,0 +1,1306 @@
+[INFO]
+RELAYTYPE=SEL-487E-3
+FID=SEL-487E-3-RXXX-VX-Z115104-DXXXXXXXX
+BFID=SLBT-4XX-R300-V0-Z001002-DXXXXXXXX
+PARTNO=0487E3X411XXB0X4H644XXX
+[D4]
+BI_1,"RLYDIS"
+BI_2,"TRIPLED"
+BI_3,"STFAIL"
+BI_4,"STWARN"
+BI_5,"STSET"
+BI_6,"UNRDEV"
+BI_7,"52CLS"
+BI_8,"52ALS"
+BI_9,"52CLT"
+BI_10,"52ALT"
+BI_11,"52CLU"
+BI_12,"52ALU"
+BI_13,"52CLW"
+BI_14,"52ALW"
+BI_15,"52CLX"
+BI_16,"52ALX"
+BI_17,"89CL01"
+BI_18,"89AL01"
+BI_19,"89CL02"
+BI_20,"89AL02"
+BI_21,"89CL03"
+BI_22,"89AL03"
+BI_23,"89CL04"
+BI_24,"89AL04"
+BI_25,"89CL05"
+BI_26,"89AL05"
+BI_27,"89CL06"
+BI_28,"89AL06"
+BI_29,"89CL07"
+BI_30,"89AL07"
+BI_31,"89CL08"
+BI_32,"89AL08"
+BI_33,"89CL09"
+BI_34,"89AL09"
+BI_35,"89CL10"
+BI_36,"89AL10"
+BI_37,"TLED_1"
+BI_38,"TLED_2"
+BI_39,"TLED_3"
+BI_40,"TLED_4"
+BI_41,"TLED_5"
+BI_42,"TLED_6"
+BI_43,"TLED_7"
+BI_44,"TLED_8"
+BI_45,"TLED_9"
+BI_46,"TLED_10"
+BI_47,"TLED_11"
+BI_48,"TLED_12"
+BI_49,"TLED_13"
+BI_50,"TLED_14"
+BI_51,"TLED_15"
+BI_52,"TLED_16"
+BI_53,"TLED_17"
+BI_54,"TLED_18"
+BI_55,"TLED_19"
+BI_56,"TLED_20"
+BI_57,"TLED_21"
+BI_58,"TLED_22"
+BI_59,"TLED_23"
+BI_60,"TLED_24"
+BI_61,"VALARMV"
+BI_62,"LOPV"
+BI_63,"VALARMZ"
+BI_64,"LOPZ"
+BI_65,"IN101"
+BI_66,"IN102"
+BI_67,"IN103"
+BI_68,"IN104"
+BI_69,"IN105"
+BI_70,"IN106"
+BI_71,"IN107"
+BI_72,"OUT101"
+BI_73,"OUT102"
+BI_74,"OUT103"
+BI_75,"OUT104"
+BI_76,"OUT105"
+BI_77,"OUT106"
+BI_78,"OUT107"
+BI_79,"OUT108"
+BI_80,""
+BI_81,""
+BI_82,""
+BI_83,""
+BI_84,""
+BI_85,""
+BI_86,""
+BI_87,""
+BI_88,""
+BI_89,""
+BI_90,""
+BI_91,""
+BI_92,""
+BI_93,""
+BI_94,""
+BI_95,""
+BI_96,""
+BI_97,""
+BI_98,""
+BI_99,""
+BI_100,""
+BI_101,""
+BI_102,""
+BI_103,""
+BI_104,""
+BI_105,""
+BI_106,""
+BI_107,""
+BI_108,""
+BI_109,""
+BI_110,""
+BI_111,""
+BI_112,""
+BI_113,""
+BI_114,""
+BI_115,""
+BI_116,""
+BI_117,""
+BI_118,""
+BI_119,""
+BI_120,""
+BI_121,""
+BI_122,""
+BI_123,""
+BI_124,""
+BI_125,""
+BI_126,""
+BI_127,""
+BI_128,""
+BI_129,""
+BI_130,""
+BI_131,""
+BI_132,""
+BI_133,""
+BI_134,""
+BI_135,""
+BI_136,""
+BI_137,""
+BI_138,""
+BI_139,""
+BI_140,""
+BI_141,""
+BI_142,""
+BI_143,""
+BI_144,""
+BI_145,""
+BI_146,""
+BI_147,""
+BI_148,""
+BI_149,""
+BI_150,""
+BI_151,""
+BI_152,""
+BI_153,""
+BI_154,""
+BI_155,""
+BI_156,""
+BI_157,""
+BI_158,""
+BI_159,""
+BI_160,""
+BI_161,""
+BI_162,""
+BI_163,""
+BI_164,""
+BI_165,""
+BI_166,""
+BI_167,""
+BI_168,""
+BI_169,""
+BI_170,""
+BI_171,""
+BI_172,""
+BI_173,""
+BI_174,""
+BI_175,""
+BI_176,""
+BI_177,""
+BI_178,""
+BI_179,""
+BI_180,""
+BI_181,""
+BI_182,""
+BI_183,""
+BI_184,""
+BI_185,""
+BI_186,""
+BI_187,""
+BI_188,""
+BI_189,""
+BI_190,""
+BI_191,""
+BI_192,""
+BI_193,""
+BI_194,""
+BI_195,""
+BI_196,""
+BI_197,""
+BI_198,""
+BI_199,""
+BI_200,""
+BI_201,""
+BI_202,""
+BI_203,""
+BI_204,""
+BI_205,""
+BI_206,""
+BI_207,""
+BI_208,""
+BI_209,""
+BI_210,""
+BI_211,""
+BI_212,""
+BI_213,""
+BI_214,""
+BI_215,""
+BI_216,""
+BI_217,""
+BI_218,""
+BI_219,""
+BI_220,""
+BI_221,""
+BI_222,""
+BI_223,""
+BI_224,""
+BI_225,""
+BI_226,""
+BI_227,""
+BI_228,""
+BI_229,""
+BI_230,""
+BI_231,""
+BI_232,""
+BI_233,""
+BI_234,""
+BI_235,""
+BI_236,""
+BI_237,""
+BI_238,""
+BI_239,""
+BI_240,""
+BI_241,""
+BI_242,""
+BI_243,""
+BI_244,""
+BI_245,""
+BI_246,""
+BI_247,""
+BI_248,""
+BI_249,""
+BI_250,""
+BI_251,""
+BI_252,""
+BI_253,""
+BI_254,""
+BI_255,""
+BI_256,""
+BI_257,""
+BI_258,""
+BI_259,""
+BI_260,""
+BI_261,""
+BI_262,""
+BI_263,""
+BI_264,""
+BI_265,""
+BI_266,""
+BI_267,""
+BI_268,""
+BI_269,""
+BI_270,""
+BI_271,""
+BI_272,""
+BI_273,""
+BI_274,""
+BI_275,""
+BI_276,""
+BI_277,""
+BI_278,""
+BI_279,""
+BI_280,""
+BI_281,""
+BI_282,""
+BI_283,""
+BI_284,""
+BI_285,""
+BI_286,""
+BI_287,""
+BI_288,""
+BI_289,""
+BI_290,""
+BI_291,""
+BI_292,""
+BI_293,""
+BI_294,""
+BI_295,""
+BI_296,""
+BI_297,""
+BI_298,""
+BI_299,""
+BI_300,""
+BI_301,""
+BI_302,""
+BI_303,""
+BI_304,""
+BI_305,""
+BI_306,""
+BI_307,""
+BI_308,""
+BI_309,""
+BI_310,""
+BI_311,""
+BI_312,""
+BI_313,""
+BI_314,""
+BI_315,""
+BI_316,""
+BI_317,""
+BI_318,""
+BI_319,""
+BI_320,""
+BI_321,""
+BI_322,""
+BI_323,""
+BI_324,""
+BI_325,""
+BI_326,""
+BI_327,""
+BI_328,""
+BI_329,""
+BI_330,""
+BI_331,""
+BI_332,""
+BI_333,""
+BI_334,""
+BI_335,""
+BI_336,""
+BI_337,""
+BI_338,""
+BI_339,""
+BI_340,""
+BI_341,""
+BI_342,""
+BI_343,""
+BI_344,""
+BI_345,""
+BI_346,""
+BI_347,""
+BI_348,""
+BI_349,""
+BI_350,""
+BI_351,""
+BI_352,""
+BI_353,""
+BI_354,""
+BI_355,""
+BI_356,""
+BI_357,""
+BI_358,""
+BI_359,""
+BI_360,""
+BI_361,""
+BI_362,""
+BI_363,""
+BI_364,""
+BI_365,""
+BI_366,""
+BI_367,""
+BI_368,""
+BI_369,""
+BI_370,""
+BI_371,""
+BI_372,""
+BI_373,""
+BI_374,""
+BI_375,""
+BI_376,""
+BI_377,""
+BI_378,""
+BI_379,""
+BI_380,""
+BI_381,""
+BI_382,""
+BI_383,""
+BI_384,""
+BI_385,""
+BI_386,""
+BI_387,""
+BI_388,""
+BI_389,""
+BI_390,""
+BI_391,""
+BI_392,""
+BI_393,""
+BI_394,""
+BI_395,""
+BI_396,""
+BI_397,""
+BI_398,""
+BI_399,""
+BI_400,""
+BO_1,"RB01"
+BO_2,"RB02"
+BO_3,"RB03"
+BO_4,"RB04"
+BO_5,"RB05"
+BO_6,"RB06"
+BO_7,"RB07"
+BO_8,"RB08"
+BO_9,"RB09"
+BO_10,"RB10"
+BO_11,"RB11"
+BO_12,"RB12"
+BO_13,"RB13"
+BO_14,"RB14"
+BO_15,"RB15"
+BO_16,"RB16"
+BO_17,"RB17"
+BO_18,"RB18"
+BO_19,"RB19"
+BO_20,"RB20"
+BO_21,"RB21"
+BO_22,"RB22"
+BO_23,"RB23"
+BO_24,"RB24"
+BO_25,"RB25"
+BO_26,"RB26"
+BO_27,"RB27"
+BO_28,"RB28"
+BO_29,"RB29"
+BO_30,"RB30"
+BO_31,"RB31"
+BO_32,"RB32"
+BO_33,"OCS"
+BO_34,"CCS"
+BO_35,"OCT"
+BO_36,"CCT"
+BO_37,"OCU"
+BO_38,"CCU"
+BO_39,"OCW"
+BO_40,"CCW"
+BO_41,"OCX"
+BO_42,"CCX"
+BO_43,"89OC01"
+BO_44,"89CC01"
+BO_45,"89OC02"
+BO_46,"89CC02"
+BO_47,"89OC03"
+BO_48,"89CC03"
+BO_49,"89OC04"
+BO_50,"89CC04"
+BO_51,"89OC05"
+BO_52,"89CC05"
+BO_53,"89OC06"
+BO_54,"89CC06"
+BO_55,"89OC07"
+BO_56,"89CC07"
+BO_57,"89OC08"
+BO_58,"89CC08"
+BO_59,"89OC09"
+BO_60,"89CC09"
+BO_61,"89OC10"
+BO_62,"89CC10"
+BO_63,"RSTTRGT"
+BO_64,"RSTDNPE"
+BO_65,""
+BO_66,""
+BO_67,""
+BO_68,""
+BO_69,""
+BO_70,""
+BO_71,""
+BO_72,""
+BO_73,""
+BO_74,""
+BO_75,""
+BO_76,""
+BO_77,""
+BO_78,""
+BO_79,""
+BO_80,""
+BO_81,""
+BO_82,""
+BO_83,""
+BO_84,""
+BO_85,""
+BO_86,""
+BO_87,""
+BO_88,""
+BO_89,""
+BO_90,""
+BO_91,""
+BO_92,""
+BO_93,""
+BO_94,""
+BO_95,""
+BO_96,""
+BO_97,""
+BO_98,""
+BO_99,""
+BO_100,""
+BO_101,""
+BO_102,""
+BO_103,""
+BO_104,""
+BO_105,""
+BO_106,""
+BO_107,""
+BO_108,""
+BO_109,""
+BO_110,""
+BO_111,""
+BO_112,""
+BO_113,""
+BO_114,""
+BO_115,""
+BO_116,""
+BO_117,""
+BO_118,""
+BO_119,""
+BO_120,""
+BO_121,""
+BO_122,""
+BO_123,""
+BO_124,""
+BO_125,""
+BO_126,""
+BO_127,""
+BO_128,""
+BO_129,""
+BO_130,""
+BO_131,""
+BO_132,""
+BO_133,""
+BO_134,""
+BO_135,""
+BO_136,""
+BO_137,""
+BO_138,""
+BO_139,""
+BO_140,""
+BO_141,""
+BO_142,""
+BO_143,""
+BO_144,""
+BO_145,""
+BO_146,""
+BO_147,""
+BO_148,""
+BO_149,""
+BO_150,""
+BO_151,""
+BO_152,""
+BO_153,""
+BO_154,""
+BO_155,""
+BO_156,""
+BO_157,""
+BO_158,""
+BO_159,""
+BO_160,""
+AI_1,"IASFMC"
+AI_2,"IASFAC"
+AI_3,"IBSFMC"
+AI_4,"IBSFAC"
+AI_5,"ICSFMC"
+AI_6,"ICSFAC"
+AI_7,"IATFMC"
+AI_8,"IATFAC"
+AI_9,"IBTFMC"
+AI_10,"IBTFAC"
+AI_11,"ICTFMC"
+AI_12,"ICTFAC"
+AI_13,"IAUFMC"
+AI_14,"IAUFAC"
+AI_15,"IBUFMC"
+AI_16,"IBUFAC"
+AI_17,"ICUFMC"
+AI_18,"ICUFAC"
+AI_19,"IAWFMC"
+AI_20,"IAWFAC"
+AI_21,"IBWFMC"
+AI_22,"IBWFAC"
+AI_23,"ICWFMC"
+AI_24,"ICWFAC"
+AI_25,"IAXFMC"
+AI_26,"IAXFAC"
+AI_27,"IBXFMC"
+AI_28,"IBXFAC"
+AI_29,"ICXFMC"
+AI_30,"ICXFAC"
+AI_31,"VAVFMC"
+AI_32,"VAVFAC"
+AI_33,"VBVFMC"
+AI_34,"VBVFAC"
+AI_35,"VCVFMC"
+AI_36,"VCVFAC"
+AI_37,"VAZFMC"
+AI_38,"VAZFAC"
+AI_39,"VBZFMC"
+AI_40,"VBZFAC"
+AI_41,"VCZFMC"
+AI_42,"VCZFAC"
+AI_43,"PASFC"
+AI_44,"PBSFC"
+AI_45,"PCSFC"
+AI_46,"PATFC"
+AI_47,"PBTFC"
+AI_48,"PCTFC"
+AI_49,"PAUFC"
+AI_50,"PBUFC"
+AI_51,"PCUFC"
+AI_52,"PAWFC"
+AI_53,"PBWFC"
+AI_54,"PCWFC"
+AI_55,"PAXFC"
+AI_56,"PBXFC"
+AI_57,"PCXFC"
+AI_58,"QASFC"
+AI_59,"QBSFC"
+AI_60,"QCSFC"
+AI_61,"QATFC"
+AI_62,"QBTFC"
+AI_63,"QCTFC"
+AI_64,"QAUFC"
+AI_65,"QBUFC"
+AI_66,"QCUFC"
+AI_67,"QAWFC"
+AI_68,"QBWFC"
+AI_69,"QCWFC"
+AI_70,"QAXFC"
+AI_71,"QBXFC"
+AI_72,"QCXFC"
+AI_73,"ACTGRP"
+AI_74,"RLYTEMP"
+AI_75,"FREQ"
+AI_76,"VDC"
+AI_77,"FTYPE"
+AI_78,"FTAR1"
+AI_79,"FTAR2"
+AI_80,"FFREQ"
+AI_81,"FGRP"
+AI_82,"FTIMEUH"
+AI_83,"FTIMEUM"
+AI_84,"FTIMEUL"
+AI_85,"FUNR"
+AI_86,""
+AI_87,""
+AI_88,""
+AI_89,""
+AI_90,""
+AI_91,""
+AI_92,""
+AI_93,""
+AI_94,""
+AI_95,""
+AI_96,""
+AI_97,""
+AI_98,""
+AI_99,""
+AI_100,""
+AI_101,""
+AI_102,""
+AI_103,""
+AI_104,""
+AI_105,""
+AI_106,""
+AI_107,""
+AI_108,""
+AI_109,""
+AI_110,""
+AI_111,""
+AI_112,""
+AI_113,""
+AI_114,""
+AI_115,""
+AI_116,""
+AI_117,""
+AI_118,""
+AI_119,""
+AI_120,""
+AI_121,""
+AI_122,""
+AI_123,""
+AI_124,""
+AI_125,""
+AI_126,""
+AI_127,""
+AI_128,""
+AI_129,""
+AI_130,""
+AI_131,""
+AI_132,""
+AI_133,""
+AI_134,""
+AI_135,""
+AI_136,""
+AI_137,""
+AI_138,""
+AI_139,""
+AI_140,""
+AI_141,""
+AI_142,""
+AI_143,""
+AI_144,""
+AI_145,""
+AI_146,""
+AI_147,""
+AI_148,""
+AI_149,""
+AI_150,""
+AI_151,""
+AI_152,""
+AI_153,""
+AI_154,""
+AI_155,""
+AI_156,""
+AI_157,""
+AI_158,""
+AI_159,""
+AI_160,""
+AI_161,""
+AI_162,""
+AI_163,""
+AI_164,""
+AI_165,""
+AI_166,""
+AI_167,""
+AI_168,""
+AI_169,""
+AI_170,""
+AI_171,""
+AI_172,""
+AI_173,""
+AI_174,""
+AI_175,""
+AI_176,""
+AI_177,""
+AI_178,""
+AI_179,""
+AI_180,""
+AI_181,""
+AI_182,""
+AI_183,""
+AI_184,""
+AI_185,""
+AI_186,""
+AI_187,""
+AI_188,""
+AI_189,""
+AI_190,""
+AI_191,""
+AI_192,""
+AI_193,""
+AI_194,""
+AI_195,""
+AI_196,""
+AI_197,""
+AI_198,""
+AI_199,""
+AI_200,""
+AI_DBD1,""
+AI_DBD2,""
+AI_DBD3,""
+AI_DBD4,""
+AI_DBD5,""
+AI_DBD6,""
+AI_DBD7,""
+AI_DBD8,""
+AI_DBD9,""
+AI_DBD10,""
+AI_DBD11,""
+AI_DBD12,""
+AI_DBD13,""
+AI_DBD14,""
+AI_DBD15,""
+AI_DBD16,""
+AI_DBD17,""
+AI_DBD18,""
+AI_DBD19,""
+AI_DBD20,""
+AI_DBD21,""
+AI_DBD22,""
+AI_DBD23,""
+AI_DBD24,""
+AI_DBD25,""
+AI_DBD26,""
+AI_DBD27,""
+AI_DBD28,""
+AI_DBD29,""
+AI_DBD30,""
+AI_DBD31,""
+AI_DBD32,""
+AI_DBD33,""
+AI_DBD34,""
+AI_DBD35,""
+AI_DBD36,""
+AI_DBD37,""
+AI_DBD38,""
+AI_DBD39,""
+AI_DBD40,""
+AI_DBD41,""
+AI_DBD42,""
+AI_DBD43,""
+AI_DBD44,""
+AI_DBD45,""
+AI_DBD46,""
+AI_DBD47,""
+AI_DBD48,""
+AI_DBD49,""
+AI_DBD50,""
+AI_DBD51,""
+AI_DBD52,""
+AI_DBD53,""
+AI_DBD54,""
+AI_DBD55,""
+AI_DBD56,""
+AI_DBD57,""
+AI_DBD58,""
+AI_DBD59,""
+AI_DBD60,""
+AI_DBD61,""
+AI_DBD62,""
+AI_DBD63,""
+AI_DBD64,""
+AI_DBD65,""
+AI_DBD66,""
+AI_DBD67,""
+AI_DBD68,""
+AI_DBD69,""
+AI_DBD70,""
+AI_DBD71,""
+AI_DBD72,""
+AI_DBD73,""
+AI_DBD74,""
+AI_DBD75,""
+AI_DBD76,""
+AI_DBD77,"0"
+AI_DBD78,"0"
+AI_DBD79,"0"
+AI_DBD80,"0"
+AI_DBD81,"0"
+AI_DBD82,"0"
+AI_DBD83,"0"
+AI_DBD84,"0"
+AI_DBD85,"0"
+AI_DBD86,""
+AI_DBD87,""
+AI_DBD88,""
+AI_DBD89,""
+AI_DBD90,""
+AI_DBD91,""
+AI_DBD92,""
+AI_DBD93,""
+AI_DBD94,""
+AI_DBD95,""
+AI_DBD96,""
+AI_DBD97,""
+AI_DBD98,""
+AI_DBD99,""
+AI_DBD100,""
+AI_DBD101,""
+AI_DBD102,""
+AI_DBD103,""
+AI_DBD104,""
+AI_DBD105,""
+AI_DBD106,""
+AI_DBD107,""
+AI_DBD108,""
+AI_DBD109,""
+AI_DBD110,""
+AI_DBD111,""
+AI_DBD112,""
+AI_DBD113,""
+AI_DBD114,""
+AI_DBD115,""
+AI_DBD116,""
+AI_DBD117,""
+AI_DBD118,""
+AI_DBD119,""
+AI_DBD120,""
+AI_DBD121,""
+AI_DBD122,""
+AI_DBD123,""
+AI_DBD124,""
+AI_DBD125,""
+AI_DBD126,""
+AI_DBD127,""
+AI_DBD128,""
+AI_DBD129,""
+AI_DBD130,""
+AI_DBD131,""
+AI_DBD132,""
+AI_DBD133,""
+AI_DBD134,""
+AI_DBD135,""
+AI_DBD136,""
+AI_DBD137,""
+AI_DBD138,""
+AI_DBD139,""
+AI_DBD140,""
+AI_DBD141,""
+AI_DBD142,""
+AI_DBD143,""
+AI_DBD144,""
+AI_DBD145,""
+AI_DBD146,""
+AI_DBD147,""
+AI_DBD148,""
+AI_DBD149,""
+AI_DBD150,""
+AI_DBD151,""
+AI_DBD152,""
+AI_DBD153,""
+AI_DBD154,""
+AI_DBD155,""
+AI_DBD156,""
+AI_DBD157,""
+AI_DBD158,""
+AI_DBD159,""
+AI_DBD160,""
+AI_DBD161,""
+AI_DBD162,""
+AI_DBD163,""
+AI_DBD164,""
+AI_DBD165,""
+AI_DBD166,""
+AI_DBD167,""
+AI_DBD168,""
+AI_DBD169,""
+AI_DBD170,""
+AI_DBD171,""
+AI_DBD172,""
+AI_DBD173,""
+AI_DBD174,""
+AI_DBD175,""
+AI_DBD176,""
+AI_DBD177,""
+AI_DBD178,""
+AI_DBD179,""
+AI_DBD180,""
+AI_DBD181,""
+AI_DBD182,""
+AI_DBD183,""
+AI_DBD184,""
+AI_DBD185,""
+AI_DBD186,""
+AI_DBD187,""
+AI_DBD188,""
+AI_DBD189,""
+AI_DBD190,""
+AI_DBD191,""
+AI_DBD192,""
+AI_DBD193,""
+AI_DBD194,""
+AI_DBD195,""
+AI_DBD196,""
+AI_DBD197,""
+AI_DBD198,""
+AI_DBD199,""
+AI_DBD200,""
+AI_SCA1,""
+AI_SCA2,""
+AI_SCA3,""
+AI_SCA4,""
+AI_SCA5,""
+AI_SCA6,""
+AI_SCA7,""
+AI_SCA8,""
+AI_SCA9,""
+AI_SCA10,""
+AI_SCA11,""
+AI_SCA12,""
+AI_SCA13,""
+AI_SCA14,""
+AI_SCA15,""
+AI_SCA16,""
+AI_SCA17,""
+AI_SCA18,""
+AI_SCA19,""
+AI_SCA20,""
+AI_SCA21,""
+AI_SCA22,""
+AI_SCA23,""
+AI_SCA24,""
+AI_SCA25,""
+AI_SCA26,""
+AI_SCA27,""
+AI_SCA28,""
+AI_SCA29,""
+AI_SCA30,""
+AI_SCA31,""
+AI_SCA32,""
+AI_SCA33,""
+AI_SCA34,""
+AI_SCA35,""
+AI_SCA36,""
+AI_SCA37,""
+AI_SCA38,""
+AI_SCA39,""
+AI_SCA40,""
+AI_SCA41,""
+AI_SCA42,""
+AI_SCA43,""
+AI_SCA44,""
+AI_SCA45,""
+AI_SCA46,""
+AI_SCA47,""
+AI_SCA48,""
+AI_SCA49,""
+AI_SCA50,""
+AI_SCA51,""
+AI_SCA52,""
+AI_SCA53,""
+AI_SCA54,""
+AI_SCA55,""
+AI_SCA56,""
+AI_SCA57,""
+AI_SCA58,""
+AI_SCA59,""
+AI_SCA60,""
+AI_SCA61,""
+AI_SCA62,""
+AI_SCA63,""
+AI_SCA64,""
+AI_SCA65,""
+AI_SCA66,""
+AI_SCA67,""
+AI_SCA68,""
+AI_SCA69,""
+AI_SCA70,""
+AI_SCA71,""
+AI_SCA72,""
+AI_SCA73,""
+AI_SCA74,""
+AI_SCA75,""
+AI_SCA76,""
+AI_SCA77,""
+AI_SCA78,""
+AI_SCA79,""
+AI_SCA80,""
+AI_SCA81,""
+AI_SCA82,""
+AI_SCA83,""
+AI_SCA84,""
+AI_SCA85,""
+AI_SCA86,""
+AI_SCA87,""
+AI_SCA88,""
+AI_SCA89,""
+AI_SCA90,""
+AI_SCA91,""
+AI_SCA92,""
+AI_SCA93,""
+AI_SCA94,""
+AI_SCA95,""
+AI_SCA96,""
+AI_SCA97,""
+AI_SCA98,""
+AI_SCA99,""
+AI_SCA100,""
+AI_SCA101,""
+AI_SCA102,""
+AI_SCA103,""
+AI_SCA104,""
+AI_SCA105,""
+AI_SCA106,""
+AI_SCA107,""
+AI_SCA108,""
+AI_SCA109,""
+AI_SCA110,""
+AI_SCA111,""
+AI_SCA112,""
+AI_SCA113,""
+AI_SCA114,""
+AI_SCA115,""
+AI_SCA116,""
+AI_SCA117,""
+AI_SCA118,""
+AI_SCA119,""
+AI_SCA120,""
+AI_SCA121,""
+AI_SCA122,""
+AI_SCA123,""
+AI_SCA124,""
+AI_SCA125,""
+AI_SCA126,""
+AI_SCA127,""
+AI_SCA128,""
+AI_SCA129,""
+AI_SCA130,""
+AI_SCA131,""
+AI_SCA132,""
+AI_SCA133,""
+AI_SCA134,""
+AI_SCA135,""
+AI_SCA136,""
+AI_SCA137,""
+AI_SCA138,""
+AI_SCA139,""
+AI_SCA140,""
+AI_SCA141,""
+AI_SCA142,""
+AI_SCA143,""
+AI_SCA144,""
+AI_SCA145,""
+AI_SCA146,""
+AI_SCA147,""
+AI_SCA148,""
+AI_SCA149,""
+AI_SCA150,""
+AI_SCA151,""
+AI_SCA152,""
+AI_SCA153,""
+AI_SCA154,""
+AI_SCA155,""
+AI_SCA156,""
+AI_SCA157,""
+AI_SCA158,""
+AI_SCA159,""
+AI_SCA160,""
+AI_SCA161,""
+AI_SCA162,""
+AI_SCA163,""
+AI_SCA164,""
+AI_SCA165,""
+AI_SCA166,""
+AI_SCA167,""
+AI_SCA168,""
+AI_SCA169,""
+AI_SCA170,""
+AI_SCA171,""
+AI_SCA172,""
+AI_SCA173,""
+AI_SCA174,""
+AI_SCA175,""
+AI_SCA176,""
+AI_SCA177,""
+AI_SCA178,""
+AI_SCA179,""
+AI_SCA180,""
+AI_SCA181,""
+AI_SCA182,""
+AI_SCA183,""
+AI_SCA184,""
+AI_SCA185,""
+AI_SCA186,""
+AI_SCA187,""
+AI_SCA188,""
+AI_SCA189,""
+AI_SCA190,""
+AI_SCA191,""
+AI_SCA192,""
+AI_SCA193,""
+AI_SCA194,""
+AI_SCA195,""
+AI_SCA196,""
+AI_SCA197,""
+AI_SCA198,""
+AI_SCA199,""
+AI_SCA200,""
+AO_1,"ACTGRP"
+AO_2,""
+AO_3,""
+AO_4,""
+AO_5,""
+AO_6,""
+AO_7,""
+AO_8,""
+AO_9,""
+AO_10,""
+AO_11,""
+AO_12,""
+AO_13,""
+AO_14,""
+AO_15,""
+AO_16,""
+AO_17,""
+AO_18,""
+AO_19,""
+AO_20,""
+AO_21,""
+AO_22,""
+AO_23,""
+AO_24,""
+AO_25,""
+AO_26,""
+AO_27,""
+AO_28,""
+AO_29,""
+AO_30,""
+AO_31,""
+AO_32,""
+AO_33,""
+AO_34,""
+AO_35,""
+AO_36,""
+AO_37,""
+AO_38,""
+AO_39,""
+AO_40,""
+AO_41,""
+AO_42,""
+AO_43,""
+AO_44,""
+AO_45,""
+AO_46,""
+AO_47,""
+AO_48,""
+AO_49,""
+AO_50,""
+AO_51,""
+AO_52,""
+AO_53,""
+AO_54,""
+AO_55,""
+AO_56,""
+AO_57,""
+AO_58,""
+AO_59,""
+AO_60,""
+AO_61,""
+AO_62,""
+AO_63,""
+AO_64,""
+AO_65,""
+AO_66,""
+AO_67,""
+AO_68,""
+AO_69,""
+AO_70,""
+AO_71,""
+AO_72,""
+AO_73,""
+AO_74,""
+AO_75,""
+AO_76,""
+AO_77,""
+AO_78,""
+AO_79,""
+AO_80,""
+AO_81,""
+AO_82,""
+AO_83,""
+AO_84,""
+AO_85,""
+AO_86,""
+AO_87,""
+AO_88,""
+AO_89,""
+AO_90,""
+AO_91,""
+AO_92,""
+AO_93,""
+AO_94,""
+AO_95,""
+AO_96,""
+AO_97,""
+AO_98,""
+AO_99,""
+AO_100,""
+CO_1,"BKRSOP"
+CO_2,"BKRTOP"
+CO_3,"BKRUOP"
+CO_4,"BKRWOP"
+CO_5,"BKRXOP"
+CO_6,""
+CO_7,""
+CO_8,""
+CO_9,""
+CO_10,""
+CO_11,""
+CO_12,""
+CO_13,""
+CO_14,""
+CO_15,""
+CO_16,""
+CO_17,""
+CO_18,""
+CO_19,""
+CO_20,""
+CO_DBD1,""
+CO_DBD2,""
+CO_DBD3,""
+CO_DBD4,""
+CO_DBD5,""
+CO_DBD6,""
+CO_DBD7,""
+CO_DBD8,""
+CO_DBD9,""
+CO_DBD10,""
+CO_DBD11,""
+CO_DBD12,""
+CO_DBD13,""
+CO_DBD14,""
+CO_DBD15,""
+CO_DBD16,""
+CO_DBD17,""
+CO_DBD18,""
+CO_DBD19,""
+CO_DBD20,""

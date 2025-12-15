@@ -1,0 +1,20 @@
+[INFO]
+RELAYTYPE=735
+FID=SEL-735-Rxxx-V0-Z103100-Dxxxxxxxx
+BFID=SLBT-735-Rxxx-V0-Z102100-Dxxxxxxxx
+PARTNO=0735BX20944CFXB4XX16101XX
+[CLASSES]
+PF,"Port F"
+P1,"Port 1"
+P2,"Port 2"
+P3,"Port 3"
+P4,"Port 4"
+1,"General"
+F,"Front Panel"
+L,"Logic"
+R,"Report"
+E,"Meter Energy Preload"
+TOU,"Time-of-Use"
+CFG,"Configured Registers"
+D,"DNP Binary map"
+HMI,"Touchscreen"

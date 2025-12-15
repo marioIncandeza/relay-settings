@@ -1,0 +1,12 @@
+[INFO]
+RELAYTYPE=0587Z
+FID=SEL-587Z-Rxxx-V0-Z001001-Dxxxxxxxx
+BFID=
+PARTNO=0587Z0XXX5X12XX
+[CLASSES]
+1,"Relay"
+L,"Logic"
+PF,"Front Port"
+P1,"Rear Port"
+T,"Text"
+R,"SER"

@@ -4,7 +4,7 @@ import shutil
 import tempfile
 import zipfile
 import pythoncom  # Required for xlwings in some threaded environments
-from rdb import gen_settings, RELAY_CONFIG, RELAY_REGION_METADATA
+from rdb import gen_settings, RELAY_CONFIG, RELAY_REGION_METADATA, get_template_info
 
 st.set_page_config(page_title="SEL Settings Generator", layout="wide")
 
@@ -23,6 +23,7 @@ def main():
     st.markdown("Generate RDB files from Excel settings tables.")
 
     # --- Sidebar Configuration ---
+    st.sidebar.image("Westwood_Logo.png")
     st.sidebar.header("Configuration")
     
     # Relay Type Selection
@@ -34,6 +35,15 @@ def main():
     )
     
     relay_config = RELAY_CONFIG[selected_key]
+
+    # Template Info Display
+    template_info_path = os.path.join("templates", selected_key)
+    if os.path.exists(template_info_path):
+        info = get_template_info(template_info_path)
+        if info:
+            with st.sidebar.expander("Template Info", expanded=False):
+                for k, v in info.items():
+                    st.write(f"**{k}:** {v}")
     
     # Region Selection (if applicable)
     excluded_regions = []

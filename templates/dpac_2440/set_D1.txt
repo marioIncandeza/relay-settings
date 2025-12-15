@@ -1,0 +1,534 @@
+[INFO]
+RELAYTYPE=SEL-2440
+FID=SEL-2440-RXXX-V0-Z009004-DXXXXXXXX
+BFID=SLBT-2440-RXXX-V0-Z008004-DXXXXXXXX
+PARTNO=24402H11A1A11630
+[D1]
+BI_00,"IN201"
+BI_01,"IN202"
+BI_02,"IN203"
+BI_03,"IN204"
+BI_04,"IN205"
+BI_05,"IN206"
+BI_06,"IN207"
+BI_07,"IN208"
+BI_08,"IN209"
+BI_09,"IN210"
+BI_10,"IN211"
+BI_11,"IN212"
+BI_12,"IN213"
+BI_13,"IN214"
+BI_14,"IN215"
+BI_15,"IN216"
+BI_16,"IN301"
+BI_17,"IN302"
+BI_18,"IN303"
+BI_19,"IN304"
+BI_20,"IN305"
+BI_21,"IN306"
+BI_22,"IN307"
+BI_23,"IN308"
+BI_24,"IN309"
+BI_25,"IN310"
+BI_26,"IN311"
+BI_27,"IN312"
+BI_28,"IN313"
+BI_29,"IN314"
+BI_30,"IN315"
+BI_31,"IN316"
+BI_32,"ENABLED"
+BI_33,"STFAIL"
+BI_34,"STSET"
+BI_35,"NA"
+BI_36,"NA"
+BI_37,"NA"
+BI_38,"NA"
+BI_39,"NA"
+BI_40,"NA"
+BI_41,"NA"
+BI_42,"NA"
+BI_43,"NA"
+BI_44,"NA"
+BI_45,"NA"
+BI_46,"NA"
+BI_47,"NA"
+BI_48,"NA"
+BI_49,"NA"
+BI_50,"NA"
+BI_51,"NA"
+BI_52,"NA"
+BI_53,"NA"
+BI_54,"NA"
+BI_55,"NA"
+BI_56,"NA"
+BI_57,"NA"
+BI_58,"NA"
+BI_59,"NA"
+BI_60,"NA"
+BI_61,"NA"
+BI_62,"NA"
+BI_63,"NA"
+BI_64,"NA"
+BI_65,"NA"
+BI_66,"NA"
+BI_67,"NA"
+BI_68,"NA"
+BI_69,"NA"
+BI_70,"NA"
+BI_71,"NA"
+BI_72,"NA"
+BI_73,"NA"
+BI_74,"NA"
+BI_75,"NA"
+BI_76,"NA"
+BI_77,"NA"
+BI_78,"NA"
+BI_79,"NA"
+BI_80,"NA"
+BI_81,"NA"
+BI_82,"NA"
+BI_83,"NA"
+BI_84,"NA"
+BI_85,"NA"
+BI_86,"NA"
+BI_87,"NA"
+BI_88,"NA"
+BI_89,"NA"
+BI_90,"NA"
+BI_91,"NA"
+BI_92,"NA"
+BI_93,"NA"
+BI_94,"NA"
+BI_95,"NA"
+BI_96,"NA"
+BI_97,"NA"
+BI_98,"NA"
+BI_99,"NA"
+BI_100,"NA"
+BI_101,"NA"
+BI_102,"NA"
+BI_103,"NA"
+BI_104,"NA"
+BI_105,"NA"
+BI_106,"NA"
+BI_107,"NA"
+BI_108,"NA"
+BI_109,"NA"
+BI_110,"NA"
+BI_111,"NA"
+BI_112,"NA"
+BI_113,"NA"
+BI_114,"NA"
+BI_115,"NA"
+BI_116,"NA"
+BI_117,"NA"
+BI_118,"NA"
+BI_119,"NA"
+BI_120,"NA"
+BI_121,"NA"
+BI_122,"NA"
+BI_123,"NA"
+BI_124,"NA"
+BI_125,"NA"
+BI_126,"NA"
+BI_127,"NA"
+BI_128,"NA"
+BI_129,"NA"
+BI_130,"NA"
+BI_131,"NA"
+BI_132,"NA"
+BI_133,"NA"
+BI_134,"NA"
+BI_135,"NA"
+BI_136,"NA"
+BI_137,"NA"
+BI_138,"NA"
+BI_139,"NA"
+BI_140,"NA"
+BI_141,"NA"
+BI_142,"NA"
+BI_143,"NA"
+BI_144,"NA"
+BI_145,"NA"
+BI_146,"NA"
+BI_147,"NA"
+BI_148,"NA"
+BI_149,"NA"
+BI_150,"NA"
+BI_151,"NA"
+BI_152,"NA"
+BI_153,"NA"
+BI_154,"NA"
+BI_155,"NA"
+BI_156,"NA"
+BI_157,"NA"
+BI_158,"NA"
+BI_159,"NA"
+BI_160,"NA"
+BI_161,"NA"
+BI_162,"NA"
+BI_163,"NA"
+BI_164,"NA"
+BI_165,"NA"
+BI_166,"NA"
+BI_167,"NA"
+BI_168,"NA"
+BI_169,"NA"
+BI_170,"NA"
+BI_171,"NA"
+BI_172,"NA"
+BI_173,"NA"
+BI_174,"NA"
+BI_175,"NA"
+BI_176,"NA"
+BI_177,"NA"
+BI_178,"NA"
+BI_179,"NA"
+BI_180,"NA"
+BI_181,"NA"
+BI_182,"NA"
+BI_183,"NA"
+BI_184,"NA"
+BI_185,"NA"
+BI_186,"NA"
+BI_187,"NA"
+BI_188,"NA"
+BI_189,"NA"
+BI_190,"NA"
+BI_191,"NA"
+BI_192,"NA"
+BI_193,"NA"
+BI_194,"NA"
+BI_195,"NA"
+BI_196,"NA"
+BI_197,"NA"
+BI_198,"NA"
+BI_199,"NA"
+BO_00,"RB01"
+BO_01,"RB02"
+BO_02,"RB03"
+BO_03,"RB04"
+BO_04,"RB05"
+BO_05,"RB06"
+BO_06,"RB07"
+BO_07,"RB08"
+BO_08,"RB09"
+BO_09,"RB10"
+BO_10,"RB11"
+BO_11,"RB12"
+BO_12,"RB13"
+BO_13,"RB14"
+BO_14,"RB15"
+BO_15,"RB16"
+BO_16,"RB17"
+BO_17,"RB18"
+BO_18,"RB19"
+BO_19,"RB20"
+BO_20,"RB21"
+BO_21,"RB22"
+BO_22,"RB23"
+BO_23,"RB24"
+BO_24,"RB25"
+BO_25,"RB26"
+BO_26,"RB27"
+BO_27,"RB28"
+BO_28,"RB29"
+BO_29,"RB30"
+BO_30,"RB31"
+BO_31,"RB32"
+BO_32,"NA"
+BO_33,"NA"
+BO_34,"NA"
+BO_35,"NA"
+BO_36,"NA"
+BO_37,"NA"
+BO_38,"NA"
+BO_39,"NA"
+BO_40,"NA"
+BO_41,"NA"
+BO_42,"NA"
+BO_43,"NA"
+BO_44,"NA"
+BO_45,"NA"
+BO_46,"NA"
+BO_47,"NA"
+BO_48,"NA"
+BO_49,"NA"
+BO_50,"NA"
+BO_51,"NA"
+BO_52,"NA"
+BO_53,"NA"
+BO_54,"NA"
+BO_55,"NA"
+BO_56,"NA"
+BO_57,"NA"
+BO_58,"NA"
+BO_59,"NA"
+BO_60,"NA"
+BO_61,"NA"
+BO_62,"NA"
+BO_63,"NA"
+AI_00,"NA"
+AI_01,"NA"
+AI_02,"NA"
+AI_03,"NA"
+AI_04,"NA"
+AI_05,"NA"
+AI_06,"NA"
+AI_07,"NA"
+AI_08,"NA"
+AI_09,"NA"
+AI_10,"NA"
+AI_11,"NA"
+AI_12,"NA"
+AI_13,"NA"
+AI_14,"NA"
+AI_15,"NA"
+AI_16,"NA"
+AI_17,"NA"
+AI_18,"NA"
+AI_19,"NA"
+AI_20,"NA"
+AI_21,"NA"
+AI_22,"NA"
+AI_23,"NA"
+AI_24,"NA"
+AI_25,"NA"
+AI_26,"NA"
+AI_27,"NA"
+AI_28,"NA"
+AI_29,"NA"
+AI_30,"NA"
+AI_31,"NA"
+AI_32,"NA"
+AI_33,"NA"
+AI_34,"NA"
+AI_35,"NA"
+AI_36,"NA"
+AI_37,"NA"
+AI_38,"NA"
+AI_39,"NA"
+AI_40,"NA"
+AI_41,"NA"
+AI_42,"NA"
+AI_43,"NA"
+AI_44,"NA"
+AI_45,"NA"
+AI_46,"NA"
+AI_47,"NA"
+AI_48,"NA"
+AI_49,"NA"
+AI_50,"NA"
+AI_51,"NA"
+AI_52,"NA"
+AI_53,"NA"
+AI_54,"NA"
+AI_55,"NA"
+AI_56,"NA"
+AI_57,"NA"
+AI_58,"NA"
+AI_59,"NA"
+AI_60,"NA"
+AI_61,"NA"
+AI_62,"NA"
+AI_63,"NA"
+AI_64,"NA"
+AI_65,"NA"
+AI_66,"NA"
+AI_67,"NA"
+AI_68,"NA"
+AI_69,"NA"
+AI_70,"NA"
+AI_71,"NA"
+AI_72,"NA"
+AI_73,"NA"
+AI_74,"NA"
+AI_75,"NA"
+AI_76,"NA"
+AI_77,"NA"
+AI_78,"NA"
+AI_79,"NA"
+AI_80,"NA"
+AI_81,"NA"
+AI_82,"NA"
+AI_83,"NA"
+AI_84,"NA"
+AI_85,"NA"
+AI_86,"NA"
+AI_87,"NA"
+AI_88,"NA"
+AI_89,"NA"
+AI_90,"NA"
+AI_91,"NA"
+AI_92,"NA"
+AI_93,"NA"
+AI_94,"NA"
+AI_95,"NA"
+AI_96,"NA"
+AI_97,"NA"
+AI_98,"NA"
+AI_99,"NA"
+AI_100,"NA"
+AI_101,"NA"
+AI_102,"NA"
+AI_103,"NA"
+AI_104,"NA"
+AI_105,"NA"
+AI_106,"NA"
+AI_107,"NA"
+AI_108,"NA"
+AI_109,"NA"
+AI_110,"NA"
+AI_111,"NA"
+AI_112,"NA"
+AI_113,"NA"
+AI_114,"NA"
+AI_115,"NA"
+AI_116,"NA"
+AI_117,"NA"
+AI_118,"NA"
+AI_119,"NA"
+AI_120,"NA"
+AI_121,"NA"
+AI_122,"NA"
+AI_123,"NA"
+AI_124,"NA"
+AI_125,"NA"
+AI_126,"NA"
+AI_127,"NA"
+AI_128,"NA"
+AI_129,"NA"
+AI_130,"NA"
+AI_131,"NA"
+AI_132,"NA"
+AI_133,"NA"
+AI_134,"NA"
+AI_135,"NA"
+AI_136,"NA"
+AI_137,"NA"
+AI_138,"NA"
+AI_139,"NA"
+AI_140,"NA"
+AI_141,"NA"
+AI_142,"NA"
+AI_143,"NA"
+AI_144,"NA"
+AI_145,"NA"
+AI_146,"NA"
+AI_147,"NA"
+AI_148,"NA"
+AI_149,"NA"
+AI_150,"NA"
+AI_151,"NA"
+AI_152,"NA"
+AI_153,"NA"
+AI_154,"NA"
+AI_155,"NA"
+AI_156,"NA"
+AI_157,"NA"
+AI_158,"NA"
+AI_159,"NA"
+AI_160,"NA"
+AI_161,"NA"
+AI_162,"NA"
+AI_163,"NA"
+AI_164,"NA"
+AI_165,"NA"
+AI_166,"NA"
+AI_167,"NA"
+AI_168,"NA"
+AI_169,"NA"
+AI_170,"NA"
+AI_171,"NA"
+AI_172,"NA"
+AI_173,"NA"
+AI_174,"NA"
+AI_175,"NA"
+AI_176,"NA"
+AI_177,"NA"
+AI_178,"NA"
+AI_179,"NA"
+AI_180,"NA"
+AI_181,"NA"
+AI_182,"NA"
+AI_183,"NA"
+AI_184,"NA"
+AI_185,"NA"
+AI_186,"NA"
+AI_187,"NA"
+AI_188,"NA"
+AI_189,"NA"
+AI_190,"NA"
+AI_191,"NA"
+AI_192,"NA"
+AI_193,"NA"
+AI_194,"NA"
+AI_195,"NA"
+AI_196,"NA"
+AI_197,"NA"
+AI_198,"NA"
+AI_199,"NA"
+AO_00,"RA001"
+AO_01,"RA002"
+AO_02,"RA003"
+AO_03,"RA004"
+AO_04,"RA005"
+AO_05,"RA006"
+AO_06,"RA007"
+AO_07,"RA008"
+AO_08,"NA"
+AO_09,"NA"
+AO_10,"NA"
+AO_11,"NA"
+AO_12,"NA"
+AO_13,"NA"
+AO_14,"NA"
+AO_15,"NA"
+AO_16,"NA"
+AO_17,"NA"
+AO_18,"NA"
+AO_19,"NA"
+AO_20,"NA"
+AO_21,"NA"
+AO_22,"NA"
+AO_23,"NA"
+AO_24,"NA"
+AO_25,"NA"
+AO_26,"NA"
+AO_27,"NA"
+AO_28,"NA"
+AO_29,"NA"
+AO_30,"NA"
+AO_31,"NA"
+CO_00,"SC01"
+CO_01,"SC02"
+CO_02,"SC03"
+CO_03,"SC04"
+CO_04,"SC05"
+CO_05,"SC06"
+CO_06,"SC07"
+CO_07,"SC08"
+CO_08,"NA"
+CO_09,"NA"
+CO_10,"NA"
+CO_11,"NA"
+CO_12,"NA"
+CO_13,"NA"
+CO_14,"NA"
+CO_15,"NA"
+CO_16,"NA"
+CO_17,"NA"
+CO_18,"NA"
+CO_19,"NA"
+CO_20,"NA"
+CO_21,"NA"
+CO_22,"NA"
+CO_23,"NA"
+CO_24,"NA"
+CO_25,"NA"
+CO_26,"NA"
+CO_27,"NA"
+CO_28,"NA"
+CO_29,"NA"
+CO_30,"NA"
+CO_31,"NA"
